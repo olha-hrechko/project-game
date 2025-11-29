@@ -1,6 +1,7 @@
 import React from 'react'
 import { useUser } from '../../context/UserContext.jsx'
 import { NavLink, useNavigate } from 'react-router-dom';
+import Button from '../Button/Button.jsx';
 
 
 const Header = () => {
@@ -16,11 +17,12 @@ const Header = () => {
   return (
     <div>
       <h1>
-      Financial adventure game
+      Financial Adventure
       </h1>
       <NavLink to="/">Home</NavLink>
       <NavLink to="/introduction">Пояснення правил гри</NavLink>
       {user && <p>{user.username}</p>}
+      {user && <Button text="Logout" onClick={handleLogout}/>}
     </div>
   )
 }

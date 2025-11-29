@@ -4,9 +4,9 @@ import { NavLink } from 'react-router-dom'
 const GreetingPage = () => {
   return (
     <main>
-      <h1>Greeting!</h1>
+      <div>Привіт</div>
       <NavLink to="/money-city">
-        Start Game
+        Давай спочатку прочитаємо інструкцію
       </NavLink>
     </main>
   )

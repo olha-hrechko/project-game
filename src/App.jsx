@@ -2,7 +2,7 @@
 import './App.css'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Homepage from './pages/HomePage/Homepage.jsx'
-import Auth from './pages/Auth/Auth.jsx'
+import SignUp from './pages/SignUp/SignUp.jsx'
 import Introduction from './pages/Introduction/Introduction.jsx'
 import Header from './components/Header/Header.jsx'
 import GreetingPage from './pages/GreetingPage/GreetingPage.jsx'
@@ -18,7 +18,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/auth" element={<Auth />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/introduction" element={<Introduction />} />
         <Route path="/greeting" element={<GreetingPage />} />
         <Route path="/money-city" element={<MoneyCity />} />
