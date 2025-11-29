@@ -11,9 +11,9 @@ const MoneyCity = () => {
   const {goal, setGoal} = useGoal();
   return (
     <main>
-      <h2>Welcome to Money City!</h2>
-      <Select value={goal} text="Choose your goal" options={options} onChange={(e) => setGoal(e.target.value)} />
-      {goal && <NavLink to="/game-page">Start Level</NavLink>}
+      <h2>Вітаю у Місті Грошей!</h2>
+      <Select value={goal} text="Виберіть ціль" options={options} onChange={(e) => setGoal(e.target.value)} />
+      {goal && <NavLink to="/game-page">Почати рівень</NavLink>}
     </main>
   )
 }
