@@ -3,10 +3,14 @@ import Button from '../../components/Button/Button.jsx'
 import React, {useEffect, useState} from 'react'
 import { FaEye } from "react-icons/fa";
 import { useUser } from '../../context/UserContext.jsx';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { auth, database } from '../../firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { ref, set } from 'firebase/database';
 
 
 const SignUp = () => {
+  const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmpassword, setConfirmpassword] = useState('');
@@ -23,11 +27,16 @@ const SignUp = () => {
   }
 }, [user, navigate]);
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmit(true);
 
    const errors = {};
+   if (!email) {
+    errors.email = "Email is required";
+   } else if (!/\S+@\S+\.\S+/.test(email)) {
+    errors.email = "Email is invalid";
+   }
    if (!username) {
    errors.username = "Username is required";
    } else if (username.length < 5) {
@@ -40,7 +49,7 @@ const SignUp = () => {
     errors.password = "Password must be at least 6 characters";
    }  
    if (password !== confirmpassword) {
-    errors.password = "Passwords do not match";
+    errors.confirmpassword = "Passwords do not match";
    }
 
    setError(errors);
@@ -49,18 +58,40 @@ const SignUp = () => {
     return;
    };
 
-    localStorage.setItem('user', JSON.stringify({ username }));
-    setUser({ username });
+   try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+    
+    const userRef = ref(database, "users/" + user.uid);
+    await set(userRef, {
+      email: user.email,
+      username: username,
+    });
+
+    setUser({ email: user.email, username });
     navigate('/greeting');
+   } catch (error) {
+    console.error("Помилка реєстрації:", error);
+    if (error.code === 'auth/email-already-in-use') {
+      setError({ email: "Email вже використовується" });
+    } else {
+      setError({ general: error.message });
+    }
+   }
 }
 
     return (
     <div>
       <form onSubmit={handleSubmit}>
+        <Input error={error.email} isSubmit={isSubmit} type="email" placeholder="Email" text="Email" value={email} onChange={e => setEmail (e.target.value)}/>
         <Input error={error.username} isSubmit={isSubmit} type="text" placeholder="Username" text="Username" value={username} onChange={e => setUsername (e.target.value)}/>
         <Input isShown={showPassword} onClick={setShowPassword} error={error.password} isSubmit={isSubmit} type="password" placeholder="Password" text="Password" value={password} onChange={e => setPassword (e.target.value)}/>
-        <Input isShown={showConfirmPassword} onClick={setShowConfirmPassword} isSubmit={isSubmit} type="password" placeholder="Repeat Password" text="Confirm Password" value={confirmpassword} onChange={e => setConfirmpassword (e.target.value)}/>
+        <Input isShown={showConfirmPassword} onClick={setShowConfirmPassword} error={error.confirmpassword} isSubmit={isSubmit} type="password" placeholder="Repeat Password" text="Confirm Password" value={confirmpassword} onChange={e => setConfirmpassword (e.target.value)}/>
+        {error.general && <p style={{color: 'red', marginTop: '10px'}}>{error.general}</p>}
         <Button type="submit" text="Sign Up"/>
+        <p>
+          Вже маєте аккаунт? <Link to="/signin">Увійти</Link>
+        </p>
       </form>
     </div>
   )
