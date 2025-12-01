@@ -12,6 +12,7 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@ramonak/react-progress-bar": "^5.4.0",
     "@tailwindcss/vite": "^4.1.17",
     "firebase": "^12.6.0",
     "react": "^19.2.0",

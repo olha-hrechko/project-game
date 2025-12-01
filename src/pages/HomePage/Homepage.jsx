@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { useUser } from '../../context/UserContext.jsx';
 import Button from '../../components/Button/Button.jsx';
 
-const Homepage = () => {
+const HomePage = () => {
   const {user} = useUser();
   const navigate = useNavigate();
   
@@ -19,6 +19,7 @@ const Homepage = () => {
         {user && user.username && (
           <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px'}}>
             <Button text="Почати гру" onClick={() => navigate('/greeting')} />
+            <Button text="Продовжити гру" onClick={() => navigate('/level-one-scenario')} />
             <div style={{display: 'flex', gap: '15px', marginTop: '10px'}}>
               <Link 
                 to="/update-profile" 
