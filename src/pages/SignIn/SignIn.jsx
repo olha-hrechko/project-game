@@ -20,7 +20,7 @@ const SignIn = () => {
 
   useEffect(() => {
     if (user) {
-      navigate("/greeting");
+      navigate("/");
     }
   }, [user, navigate]);
 
@@ -79,7 +79,7 @@ const SignIn = () => {
         setUser({ email: user.email });
       }
       
-      navigate('/greeting');
+      navigate('/');
     } catch (error) {
       console.error("Помилка входу:", error);
       if (error.code === 'auth/invalid-credential') {

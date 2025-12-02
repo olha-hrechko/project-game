@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from "react";
 const HappinessContext = createContext();
 
 export const HappinessProvider = ({ children }) => {
-  const [happiness, setHappiness] = useState(100);
+  const [happiness, setHappiness] = useState(0);
     return (
         <HappinessContext.Provider value={{happiness, setHappiness}}>
             {children}

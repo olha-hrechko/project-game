@@ -19,7 +19,7 @@ const HomePage = () => {
         {user && user.username && (
           <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px'}}>
             <Button text="Почати гру" onClick={() => navigate('/greeting')} />
-            <Button text="Продовжити гру" onClick={() => navigate('/level-one-scenario')} />
+            <Button text="Продовжити гру" onClick={() => navigate('/scenario-level-one')} />
             <div style={{display: 'flex', gap: '15px', marginTop: '10px'}}>
               <Link 
                 to="/update-profile" 
@@ -49,4 +49,4 @@ const HomePage = () => {
   )
 }
 
-export default Homepage
+export default HomePage

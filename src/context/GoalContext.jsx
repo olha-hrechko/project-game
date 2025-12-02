@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from "react";
 const GoalContext = createContext();
 
 export const GoalProvider = ({ children }) => {
-  const [goal, setGoal] = useState('');
+  const [goal, setGoal] = useState(localStorage.getItem('goal') || '');
 
     return (
     <GoalContext.Provider value={{ goal, setGoal }}>
