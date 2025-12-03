@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase } from "firebase/database";
+import { getDatabase, ref, set, get, update } from "firebase/database";
 import { getAuth }  from "firebase/auth";
 
 
@@ -22,3 +22,37 @@ console.log(auth);
 
 export const database = getDatabase(app);
 console.log(database);
+
+// Функції для роботи з даними гравця
+export const savePlayerData = async (userId, data) => {
+  try {
+    await set(ref(database, `users/${userId}`), data);
+    console.log("Дані збережено успішно");
+  } catch (error) {
+    console.error("Помилка збереження даних:", error);
+  }
+};
+
+export const getPlayerData = async (userId) => {
+  try {
+    const snapshot = await get(ref(database, `users/${userId}`));
+    if (snapshot.exists()) {
+      return snapshot.val();
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error("Помилка отримання даних:", error);
+    return null;
+  }
+};
+
+export const updatePlayerData = async (userId, updates) => {
+  try {
+    await update(ref(database, `users/${userId}`), updates);
+    console.log("Дані оновлено успішно");
+  } catch (error) {
+    console.error("Помилка оновлення даних:", error);
+  }
+};
+

@@ -74,7 +74,17 @@ const SignIn = () => {
       
       if (userSnap.exists()) {
         const userData = userSnap.val();
-        setUser({ email: user.email, username: userData.username });
+        setUser({ 
+        email: user.email, 
+        username: userData.username, 
+        uid: user.uid, 
+        wallet: userData.wallet, 
+        happiness: userData.happiness, 
+        wisdom: userData.wisdom, 
+        reputation: userData.reputation,
+        progressbar: userData.progressbar,
+        goal: userData.goal
+        });
       } else {
         setUser({ email: user.email });
       }

@@ -10,48 +10,53 @@ import { useWallet } from '../../context/WalletContext.jsx';
 import { useWisdom } from '../../context/WithdomContext.jsx';
 import { useHappiness } from '../../context/HappinessContext.jsx';
 import { useReputation } from '../../context/ReputationContext.jsx';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../firebase';
 
 const urls = ['/money-city','/game-page','/scenario-level-one','/level-one'];
 
 const Header = () => {
   const { user, setUser } = useUser();
   const navigate = useNavigate();
-  const { goal } = useGoal();
-  const { progress, setProgress } = useProgressBar();
+  //const { progress, setProgress } = useProgressBar();
   const [goalText, setGoalText] = useState('');
   const location = useLocation();
-  const { wallet } = useWallet();
-  const { wisdom } = useWisdom();
-  const { happiness } = useHappiness();
-  const { reputation } = useReputation();
-
+  //const { goal } = useGoal();
+  //const { wallet } = useWallet();
+  //const { wisdom } = useWisdom();
+  //const { happiness } = useHappiness();
+  //const { reputation } = useReputation();
   console.log(user);
-  console.log(goal);
-  console.log(urls.includes(location.pathname));
 
   useEffect(() => {
-    switch (goal){
+    if (user) {
+    switch (user.goal){
       case 'velo':
-      localStorage.setItem('goal', 'velo');  
+      //localStorage.setItem('goal', 'velo');  
       setGoalText('Велосипед');
         break;
       case 'gamecomputer':
-      localStorage.setItem('goal', 'gamecomputer');  
+      //localStorage.setItem('goal', 'gamecomputer');  
         setGoalText('Ігровий компʼютер');
         break;
       case 'doll':
-      localStorage.setItem('goal', 'doll');  
+      //localStorage.setItem('goal', 'doll');  
         setGoalText('Трендова лялька');
         break;
       default:
         setGoalText('');
     }
-  }, [goal]);
+    }
+  }, [user]);
 
-  const handleLogout = () => {
-    setUser(null);
-    localStorage.removeItem('user');
-    navigate('/');
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      setUser(null);
+      navigate('/');
+    } catch (error) {
+      console.error("Помилка при виході:", error);
+    }
   };
 
   return (
@@ -63,14 +68,14 @@ const Header = () => {
       <NavLink to="/introduction">Пояснення правил гри</NavLink>
       {user && <p>{user.username}</p>}
       {user && <Button text="Logout" onClick={handleLogout}/>}
-      {user && goal && <p>{goalText}</p>}
-      {user && goal && <p>Гаманець: {wallet} монет</p>}
-      {user && goal && <p>Мудрість: {wisdom}</p>}
-      {user && goal && <p>Щастя: {happiness}</p>}
-      {user && goal && <p>Репутація: {reputation}</p>}
-      {user && goal && urls.includes(location.pathname) && (
+      {user && user.goal && <p>{goalText}</p>}
+      {user && user.goal && <p>Гаманець: {user.wallet} монет</p>}
+      {user && user.goal && <p>Мудрість: {user.wisdom}</p>}
+      {user && user.goal && <p>Щастя: {user.happiness}</p>}
+      {user && user.goal && <p>Репутація: {user.reputation}</p>}
+      {user && user.goal && urls.includes(location.pathname) && (
         <ProgressBar
-          completed={progress}
+          completed={user.progressbar}
           maxCompleted={100}
           labelAlignment="center"
           labelColor="#000000"

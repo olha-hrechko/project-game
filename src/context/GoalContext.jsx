@@ -11,5 +11,5 @@ export const GoalProvider = ({ children }) => {
     </GoalContext.Provider>
     );
     }
-
+    
 export const useGoal = () => useContext(GoalContext);

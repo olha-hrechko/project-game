@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { savePlayerData, updatePlayerData } from '../../firebase';
+import { useUser } from '../../context/UserContext';
 import Button from "../../components/Button/Button.jsx";
 import { useWallet } from "../../context/WalletContext.jsx";
 import { useHappiness } from "../../context/HappinessContext.jsx";
@@ -8,9 +10,11 @@ import { NavLink } from "react-router-dom";
 const ScenarioLevelOne = () => {
     const [choose, setChoose] = useState("");
     const [advice, setAdvice] = useState("");
-    const { setWallet } = useWallet();
-    const { setHappiness } = useHappiness();
-    const { setWisdom } = useWisdom();
+    const [isDisabled, setIsDisabled] = useState(false);
+    //const { wallet, setWallet } = useWallet();
+    //const { happiness, setHappiness } = useHappiness();
+    //const { wisdom, setWisdom } = useWisdom();
+    const { user, setUser } = useUser();
 
     useEffect(() => {
         if (choose) {  // Запускати таймер тільки якщо choose не порожній
@@ -25,23 +29,61 @@ const ScenarioLevelOne = () => {
     }, [choose]);
 
 
-    const handleClickNotWasteMoney = (selection) => {
-        setWallet(prev => prev + 100);
-        setWisdom(prev => prev + 3);
+    const handleClickNotWasteMoney = async(selection) => {
+        setIsDisabled(true);
+        const newWallet = user.wallet + 100;
+        //setWallet(newWallet);
+        const newWisdom = user.wisdom + 3;
+        //setWisdom(newWisdom);
         setChoose(selection);
+        await updatePlayerData(user.uid, {
+            wallet: newWallet,
+            wisdom: newWisdom
+        });
+        setUser ({
+            ...user,
+            wallet: newWallet,
+            wisdom: newWisdom
+        })
         // Logic for not wasting money
     }
-    const handleClickWasteHalfOFMoney = (selection) => {
-        setWallet(prev => prev + 50);
-        setHappiness(prev => prev + 1);
-        setWisdom(prev => prev + 1);
+    const handleClickWasteHalfOFMoney = async(selection) => {
+        setIsDisabled(true);
+        const newWallet = user.wallet + 50;
+        //setWallet(newWallet);
+        const newHappiness = user.happiness + 1;
+        //setHappiness(newHappiness);
+        const newWisdom = user.wisdom + 1;
+        //setWisdom(newWisdom);
         setChoose(selection);
+        await updatePlayerData(user.uid, {
+            wallet: newWallet,
+            happiness: newHappiness,
+            wisdom: newWisdom
+        });
+        setUser({
+            ...user,
+            wallet: newWallet,
+            happiness: newHappiness,
+            wisdom: newWisdom
+        });
         // Logic for wasting half of the money
     }
-    const handleClickWasteAllMoney = (selection) => {
-        setWallet(prev => prev + 0);
-        setHappiness(prev => prev + 3);
+    const handleClickWasteAllMoney = async(selection) => {
+        setIsDisabled(true);
+        //setWallet(prev => prev + 0);
+        const newHappiness = user.happiness + 3;
+        //setHappiness(newHappiness);
         setChoose(selection);
+        await updatePlayerData(user.uid, {
+            wallet: user.wallet + 0,
+            happiness: newHappiness
+        });
+        setUser({
+            ...user,
+            wallet: user.wallet + 0,
+            happiness: newHappiness
+        });
         // Logic for wasting all the money
     }
     return (
@@ -49,9 +91,9 @@ const ScenarioLevelOne = () => {
             <div>
                 <p>Герою дали 100 монет кишенькових. Він гуляє містом, бачить магазин іграшок,
                     смаколики, картінг. Йому хочеться щось купити.  Що він буде робити?</p>
-                <Button disabled={!!choose} text="Не витрачати гроші.  Відкласти." onClick={() => handleClickNotWasteMoney("notWasteMoney")} />
-                <Button disabled={!!choose} text="Відкласти половину грошей, а на залишок купити солодощі (ціна 50 монет)." onClick={() => handleClickWasteHalfOFMoney("wasteHalfMoney")} />
-                <Button disabled={!!choose} text="Витратити всі гроші. Кататися на картингу, купити солодощі і іграшку." onClick={() => handleClickWasteAllMoney("wasteAllMoney")} />
+                <Button disabled={isDisabled} text="Не витрачати гроші.  Відкласти." onClick={() => handleClickNotWasteMoney("notWasteMoney")} />
+                <Button disabled={isDisabled} text="Відкласти половину грошей, а на залишок купити солодощі (ціна 50 монет)." onClick={() => handleClickWasteHalfOFMoney("wasteHalfMoney")} />
+                <Button disabled={isDisabled} text="Витратити всі гроші. Кататися на картингу, купити солодощі і іграшку." onClick={() => handleClickWasteAllMoney("wasteAllMoney")} />
             </div>
             {choose === "notWasteMoney" && <p>Ти вирішив нічого не витрачати - це дуже обережно і мудро. Так ти матимеш багато можливостей у наступних рівнях!</p>}
             {choose === "wasteHalfMoney" && <p>Чудовий баланс!</p>}

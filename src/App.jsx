@@ -16,6 +16,7 @@ import ScenarioLevelOne from "./pages/ScenarioLevelOne/ScenarioLevelOne.jsx";
 import LevelOneOutput from "./pages/LevelOneOutput/LevelOneOutput.jsx";
 
 function App() {
+  
   return (
     <BrowserRouter>
       <Header />

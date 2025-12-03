@@ -23,10 +23,11 @@ export const UserProvider = ({ children }) => {
         
         if (userSnap.exists()) {
           const userData = userSnap.val();
-          console.log("Username from DB:", userData.username);
+          console.log("Username from DB:", userData);
           setUser({ 
+            ...userData,
             email: firebaseUser.email, 
-            username: userData.username 
+            uid: firebaseUser.uid, 
           });
         } else {
           console.log("No user data found in database");
