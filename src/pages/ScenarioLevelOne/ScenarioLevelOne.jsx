@@ -2,10 +2,9 @@ import { useState, useEffect } from "react";
 import { savePlayerData, updatePlayerData } from '../../firebase';
 import { useUser } from '../../context/UserContext';
 import Button from "../../components/Button/Button.jsx";
-import { useWallet } from "../../context/WalletContext.jsx";
-import { useHappiness } from "../../context/HappinessContext.jsx";
-import { useWisdom } from "../../context/WithdomContext.jsx";
-import { NavLink } from "react-router-dom"; 
+import { NavLink } from "react-router-dom";
+import React from "react";
+import { ToastContainer, toast } from 'react-toastify';
 
 const ScenarioLevelOne = () => {
     const [choose, setChoose] = useState("");
@@ -15,6 +14,7 @@ const ScenarioLevelOne = () => {
     //const { happiness, setHappiness } = useHappiness();
     //const { wisdom, setWisdom } = useWisdom();
     const { user, setUser } = useUser();
+    console.log (isDisabled);
 
     useEffect(() => {
         if (choose) {  // Запускати таймер тільки якщо choose не порожній
@@ -30,6 +30,10 @@ const ScenarioLevelOne = () => {
 
 
     const handleClickNotWasteMoney = async(selection) => {
+        if (isDisabled) {
+            toast.info("Ви вже зробили вибір, чекайте на пораду");
+            return;
+        }
         setIsDisabled(true);
         const newWallet = user.wallet + 100;
         //setWallet(newWallet);
@@ -48,6 +52,10 @@ const ScenarioLevelOne = () => {
         // Logic for not wasting money
     }
     const handleClickWasteHalfOFMoney = async(selection) => {
+        if (isDisabled) {
+            toast.info("Ви вже зробили вибір, чекайте на пораду");
+            return;
+        }
         setIsDisabled(true);
         const newWallet = user.wallet + 50;
         //setWallet(newWallet);
@@ -70,6 +78,10 @@ const ScenarioLevelOne = () => {
         // Logic for wasting half of the money
     }
     const handleClickWasteAllMoney = async(selection) => {
+        if (isDisabled) {
+            toast.info("Ви вже зробили вибір, чекайте на пораду");
+            return;
+        }
         setIsDisabled(true);
         //setWallet(prev => prev + 0);
         const newHappiness = user.happiness + 3;
@@ -91,9 +103,9 @@ const ScenarioLevelOne = () => {
             <div>
                 <p>Герою дали 100 монет кишенькових. Він гуляє містом, бачить магазин іграшок,
                     смаколики, картінг. Йому хочеться щось купити.  Що він буде робити?</p>
-                <Button disabled={isDisabled} text="Не витрачати гроші.  Відкласти." onClick={() => handleClickNotWasteMoney("notWasteMoney")} />
-                <Button disabled={isDisabled} text="Відкласти половину грошей, а на залишок купити солодощі (ціна 50 монет)." onClick={() => handleClickWasteHalfOFMoney("wasteHalfMoney")} />
-                <Button disabled={isDisabled} text="Витратити всі гроші. Кататися на картингу, купити солодощі і іграшку." onClick={() => handleClickWasteAllMoney("wasteAllMoney")} />
+                <Button text="Не витрачати гроші.  Відкласти." onClick={() => handleClickNotWasteMoney("notWasteMoney")} />
+                <Button text="Відкласти половину грошей, а на залишок купити солодощі (ціна 50 монет)." onClick={() => handleClickWasteHalfOFMoney("wasteHalfMoney")} />
+                <Button text="Витратити всі гроші. Кататися на картингу, купити солодощі і іграшку." onClick={() => handleClickWasteAllMoney("wasteAllMoney")} />
             </div>
             {choose === "notWasteMoney" && <p>Ти вирішив нічого не витрачати - це дуже обережно і мудро. Так ти матимеш багато можливостей у наступних рівнях!</p>}
             {choose === "wasteHalfMoney" && <p>Чудовий баланс!</p>}
@@ -101,8 +113,8 @@ const ScenarioLevelOne = () => {
             {advice === "notWasteMoney" && <p>Порада: Але пам’ятай: інколи можна дозволяти собі маленькі радощі, це теж важливо.</p>}
             {advice === "wasteHalfMoney" && <p>Порада: Такі рішення допомагають мати і радість зараз, і гроші пізніше.</p>}
             {advice === "wasteAllMoney" && <p>Порада: Наступного разу подумай, чи варто витрачати все одразу. Інколи варто залишити хоча б трохи.</p>}
-
-            <NavLink to="/level-one-output">Наступний рівень</NavLink>
+            <ToastContainer />
+            <NavLink to="/level-one-output">Далі</NavLink>
         </section>
     );
 };

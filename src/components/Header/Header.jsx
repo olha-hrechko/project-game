@@ -1,19 +1,15 @@
 import { useEffect, useState } from 'react'
-import ProgressBar from "@ramonak/react-progress-bar";
+//import ProgressBar from "@ramonak/react-progress-bar";
+import ProgressBar from '../ProgressBar/ProgressBar.jsx';
 import { useUser } from '../../context/UserContext.jsx';
-import { useGoal } from '../../context/GoalContext.jsx';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Button from '../Button/Button.jsx';
-import { useProgressBar } from '../../context/ProgressBarContext.jsx';
 import { useLocation } from 'react-router-dom';
-import { useWallet } from '../../context/WalletContext.jsx';
-import { useWisdom } from '../../context/WithdomContext.jsx';
-import { useHappiness } from '../../context/HappinessContext.jsx';
-import { useReputation } from '../../context/ReputationContext.jsx';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../firebase';
 
 const urls = ['/money-city','/game-page','/scenario-level-one','/level-one'];
+const walleturls = ['/money-city','/game-page','/scenario-level-one','/level-one'];
 
 const Header = () => {
   const { user, setUser } = useUser();
@@ -69,10 +65,10 @@ const Header = () => {
       {user && <p>{user.username}</p>}
       {user && <Button text="Logout" onClick={handleLogout}/>}
       {user && user.goal && <p>{goalText}</p>}
-      {user && user.goal && <p>Гаманець: {user.wallet} монет</p>}
-      {user && user.goal && <p>Мудрість: {user.wisdom}</p>}
-      {user && user.goal && <p>Щастя: {user.happiness}</p>}
-      {user && user.goal && <p>Репутація: {user.reputation}</p>}
+      {user && user.goal && walleturls.includes(location.pathname) && <p>Гаманець: {user.wallet} монет</p>}
+      {user && user.goal && walleturls.includes(location.pathname) && <p>Мудрість: {user.wisdom}</p>}
+      {user && user.goal && walleturls.includes(location.pathname) &&<p>Щастя: {user.happiness}</p>}
+      {user && user.goal && walleturls.includes(location.pathname) && <p>Репутація: {user.reputation}</p>}
       {user && user.goal && urls.includes(location.pathname) && (
         <ProgressBar
           completed={user.progressbar}
