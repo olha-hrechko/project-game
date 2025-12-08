@@ -1,28 +1,42 @@
 import { useEffect, useState } from 'react'
-//import ProgressBar from "@ramonak/react-progress-bar";
-import ProgressBar from '../ProgressBar/ProgressBar.jsx';
+import PixelProgressBar from '../ProgressBar/ProgressBar.jsx';
 import { useUser } from '../../context/UserContext.jsx';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Button from '../Button/Button.jsx';
 import { useLocation } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../firebase';
+import { useHeaderVisibility } from '../../context/HeaderVisibilityContext.jsx';
 
-const urls = ['/money-city','/game-page','/scenario-level-one','/level-one'];
-const walleturls = ['/money-city','/game-page','/scenario-level-one','/level-one'];
+const GAME_PAGES = [
+  '/money-city',
+  '/game-page',
+  '/scenario-level-one',
+  '/level-one',
+  '/level-two',
+  '/scenario-level-two',
+  '/level-two-output',
+  '/level-three',
+  '/scenario-level-three',
+  '/level-three-output',
+  '/level-four',
+  '/scenario-level-four',
+  '/level-four-output',
+  '/level-five',
+  '/scenario-level-five',
+  '/level-five-output'
+]
+
+const urls = GAME_PAGES;
+const walleturls = GAME_PAGES;
+const goalurls = GAME_PAGES;
 
 const Header = () => {
   const { user, setUser } = useUser();
   const navigate = useNavigate();
-  //const { progress, setProgress } = useProgressBar();
   const [goalText, setGoalText] = useState('');
   const location = useLocation();
-  //const { goal } = useGoal();
-  //const { wallet } = useWallet();
-  //const { wisdom } = useWisdom();
-  //const { happiness } = useHappiness();
-  //const { reputation } = useReputation();
-  console.log(user);
+  const { hideStats } = useHeaderVisibility();
 
   useEffect(() => {
     if (user) {
@@ -35,9 +49,9 @@ const Header = () => {
       //localStorage.setItem('goal', 'gamecomputer');  
         setGoalText('Ігровий компʼютер');
         break;
-      case 'doll':
-      //localStorage.setItem('goal', 'doll');  
-        setGoalText('Трендова лялька');
+      case 'emo':
+      //localStorage.setItem('goal', 'emo');  
+        setGoalText('Міні-Робот Emo');
         break;
       default:
         setGoalText('');
@@ -54,31 +68,29 @@ const Header = () => {
       console.error("Помилка при виході:", error);
     }
   };
-
+console.log("Header user.progressbar:", user.progressbar);
   return (
     <div>
       <h1>
       Financial Adventure
       </h1>
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/introduction">Пояснення правил гри</NavLink>
+      {user && <NavLink to="/">Home</NavLink>}
+      {user && <NavLink to="/introduction">Пояснення правил гри</NavLink>}
       {user && <p>{user.username}</p>}
       {user && <Button text="Logout" onClick={handleLogout}/>}
-      {user && user.goal && <p>{goalText}</p>}
-      {user && user.goal && walleturls.includes(location.pathname) && <p>Гаманець: {user.wallet} монет</p>}
-      {user && user.goal && walleturls.includes(location.pathname) && <p>Мудрість: {user.wisdom}</p>}
-      {user && user.goal && walleturls.includes(location.pathname) &&<p>Щастя: {user.happiness}</p>}
-      {user && user.goal && walleturls.includes(location.pathname) && <p>Репутація: {user.reputation}</p>}
-      {user && user.goal && urls.includes(location.pathname) && (
-        <ProgressBar
-          completed={user.progressbar}
-          maxCompleted={100}
-          labelAlignment="center"
-          labelColor="#000000"
-          bgColor="#4caf50"
-          height="20px"
-          width="300px"
-          disabled={true}
+      {!hideStats && user && user.goal && goalurls.includes(location.pathname) && <p>{goalText}</p>}
+      {!hideStats && user && user.goal && walleturls.includes(location.pathname) && <p>Гаманець: {user.wallet} монет</p>}
+      {!hideStats && user && user.goal && walleturls.includes(location.pathname) && <p>Мудрість: {user.wisdom}</p>}
+      {!hideStats && user && user.goal && walleturls.includes(location.pathname) &&<p>Щастя: {user.happiness}</p>}
+      {!hideStats && user && user.goal && walleturls.includes(location.pathname) && <p>Репутація: {user.reputation}</p>}
+      {!hideStats && user && user.goal && urls.includes(location.pathname) && (
+        <PixelProgressBar
+          value={user.progressbar}
+          max={10}
+          pixelCount={10}
+          pixelSize={20}
+          filledColor="#4caf50"
+          emptyColor="#e0e0e0"
         />
       )}
     </div>

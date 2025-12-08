@@ -59,7 +59,7 @@ const SignUp = () => {
    };
 
    try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password, );
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
     
     const userRef = ref(database, "users/" + user.uid);
@@ -71,7 +71,9 @@ const SignUp = () => {
       wisdom: 0,
       reputation: 0,
       progressbar: 0,
-      goal: ''
+      goal: '',
+      level: 0,
+      result: {impulsivepattern: 0, mixedpattern: 0, strategicalpattern: 0, econompattern: 0}
     });
 
     setUser({ 
@@ -83,8 +85,11 @@ const SignUp = () => {
       wisdom: 0,
       reputation: 0,
       progressbar: 0,
-      goal: ''
+      goal: '',
+      level: 0,
+      result: {impulsivepattern: 0, mixedpattern: 0, strategicalpattern: 0, econompattern: 0}
     });
+    
     navigate('/greeting');
    } catch (error) {
     console.error("Помилка реєстрації:", error);

@@ -1,6 +1,10 @@
 import React from 'react'
 
-const Introduction = () => {
+
+const FinalGoalMap = () => {
+
+
+
   return (
     <div>
       
@@ -8,4 +12,4 @@ const Introduction = () => {
   )
 }
 
-export default Introduction
+export default FinalGoalMap

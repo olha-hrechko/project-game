@@ -83,7 +83,10 @@ const SignIn = () => {
         wisdom: userData.wisdom, 
         reputation: userData.reputation,
         progressbar: userData.progressbar,
-        goal: userData.goal
+        goal: userData.goal,
+        level: userData.level,
+        levelOneCompleted: userData.levelOneCompleted,
+        result: userData.result
         });
       } else {
         setUser({ email: user.email });

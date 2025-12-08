@@ -1,13 +1,11 @@
 
 import React from 'react'
-import Select from '../../components/Select/Select';
+import Select from '../../../components/Select/Select.jsx';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import Button from '../../components/Button/Button';
-import { useUser } from '../../context/UserContext.jsx';
-import { updatePlayerData } from '../../firebase';
-
-const options = [{ value: '', label: 'Виберіть ціль' }, { value: 'velo', label: 'Велосипед' }, { value: 'gamecomputer', label: 'Ігровий компʼютер' }, { value: 'doll', label: 'Трендова лялька' }];
+import Button from '../../../components/Button/Button.jsx';
+import { useUser } from '../../../context/UserContext.jsx';
+import { updatePlayerData } from '../../../firebase.js';
 
 const MoneyCity = () => {
   const navigate = useNavigate();
@@ -21,25 +19,21 @@ const MoneyCity = () => {
       ...user,
       goal: selection
     })
-    navigate * ('/game-page')
+    navigate('/game-page')
   }
   return (
     <main>
       <h2>Вітаю у Місті Грошей!</h2>
       <p>Оберіть ціль, яку хочете досягти, та почніть заробляти гроші!</p>
-      <Button text="Велосипед" onClick={() => {
+      <Button text="Велосипед - 250 монет" onClick={() => {
         handleClick('velo')
       }}
       />
-      <Button text="Ігровий компʼютер" onClick={() => {
+      <Button text="Ігровий компʼютер - 320 монет" onClick={() => {
         handleClick('gamecomputer')
       }}
       />
-      <Button text="Трендова лялька" onClick={() => {
-        handleClick('doll')
-      }}
-      />
-      <Button text="Міні-Робот Emo" onClick={() => {
+      <Button text="Міні-Робот Emo - 210 монет" onClick={() => {
         handleClick('emo')
       }}
       />

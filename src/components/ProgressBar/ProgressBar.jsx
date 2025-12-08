@@ -1,14 +1,13 @@
 import React from "react";
 
-
 // Pixel Progress Bar component
-const PixelProgressBar = ({ 
-    value = 0, 
-    max = 100, 
-    pixelCount = 10, 
-    pixelSize = 20, 
-    filledColor = "#4caf50", 
-    emptyColor = "#e0e0e0" 
+const PixelProgressBar = ({
+	value = 0,
+	max = 10,
+	pixelCount = 10,
+	pixelSize = 20,
+	filledColor = "#4caf50",
+	emptyColor = "#e0e0e0"
 }) => {
 	const filledPixels = Math.round((value / max) * pixelCount);
 	return (
