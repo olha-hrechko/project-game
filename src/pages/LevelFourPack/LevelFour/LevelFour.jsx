@@ -6,27 +6,27 @@ const LevelFour = () => {
   const levelFourWords = [
     {
       icon: '⚠️',
-      word: 'Несподівані витрати',
-      definition: 'Несподівані витрати - це гроші, які тобі потрібно витратити на щось, що ти не планував. Наприклад, зламалася іграшка або планшет, і їх потрібно полагодити.'
+      word: 'Dépenses imprévues',
+      definition: 'Les dépenses imprévues, c\'est l\'argent que tu dois dépenser pour quelque chose que tu n\'avais pas prévu. Par exemple, un jouet ou une tablette qui se casse et qu\'il faut réparer.'
     },
     {
       icon: '🛡️',
-      word: 'Резерв',
-      definition: 'Резерв - це гроші, які ти відкладаєш на випадок непередбачених ситуацій. Наприклад, якщо щось зламається, у тебе будуть гроші, щоб полагодити.'
+      word: 'Réserve',
+      definition: 'Une réserve, c\'est de l\'argent que tu mets de côté en cas de situations imprévues. Par exemple, si quelque chose se casse, tu auras l\'argent pour le réparer.'
     }
   ];
 
   return (
     <div className="game-page">
       <div className="game-card" style={{maxWidth: '800px'}}>
-        <h1 className="game-title">🔧 Рівень Чотири</h1>
-        <h2 className="game-subtitle" style={{marginBottom: '2rem'}}>Неочікувані витрати</h2>
+        <h1 className="game-title">🔧 Niveau Quatre</h1>
+        <h2 className="game-subtitle" style={{marginBottom: '2rem'}}>Dépenses inattendues</h2>
         
         <Dictionary words={levelFourWords} />
         
         <div className="game-choices" style={{marginTop: '2rem'}}>
           <NavLink to="/scenario-level-four" className="game-link">
-            ▶️ Далі
+            ▶️ Suivant
           </NavLink>
         </div>
       </div>

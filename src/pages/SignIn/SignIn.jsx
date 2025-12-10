@@ -26,18 +26,18 @@ const SignIn = () => {
 
   const handlePasswordReset = async () => {
     if (!email) {
-      setError({ email: "Введіть email для скидання пароля" });
+      setError({ email: "Entrez l'email pour réinitialiser le mot de passe" });
       return;
     }
     
     try {
       await sendPasswordResetEmail(auth, email);
-      setResetMessage("Лист для скидання пароля надіслано на вашу пошту");
+      setResetMessage("Email de réinitialisation envoyé à votre adresse");
       setError({});
     } catch (error) {
-      console.error("Помилка скидання пароля:", error);
+      console.error("Erreur de réinitialisation du mot de passe:", error);
       if (error.code === 'auth/user-not-found') {
-        setError({ email: "Користувача з таким email не знайдено" });
+        setError({ email: "Utilisateur avec cet email introuvable" });
       } else {
         setError({ general: error.message });
       }
@@ -50,13 +50,13 @@ const SignIn = () => {
 
     const errors = {};
     if (!email) {
-      errors.email = "Email is required";
+      errors.email = "L'email est requis";
     } else if (!/\S+@\S+\.\S+/.test(email)) {
-      errors.email = "Email is invalid";
+      errors.email = "L'email est invalide";
     }
 
     if (!password) {
-      errors.password = "Password is required";
+      errors.password = "Le mot de passe est requis";
     }
 
     setError(errors);
@@ -94,13 +94,13 @@ const SignIn = () => {
       
       navigate('/');
     } catch (error) {
-      console.error("Помилка входу:", error);
+      console.error("Erreur de connexion:", error);
       if (error.code === 'auth/invalid-credential') {
-        setError({ general: "Невірний email або пароль" });
+        setError({ general: "Email ou mot de passe incorrect" });
       } else if (error.code === 'auth/user-not-found') {
-        setError({ email: "Користувача не знайдено" });
+        setError({ email: "Utilisateur introuvable" });
       } else if (error.code === 'auth/wrong-password') {
-        setError({ password: "Невірний пароль" });
+        setError({ password: "Mot de passe incorrect" });
       } else {
         setError({ general: error.message });
       }
@@ -110,26 +110,26 @@ const SignIn = () => {
       return (
       <div className="game-page">
         <div className="game-card" style={{maxWidth: '500px'}}>
-          <h1 className="game-title"> Вхід</h1>
+          <h1 className="game-title"> Connexion</h1>
           <form onSubmit={handleSubmit}>
             <Input error={error.email} isSubmit={isSubmit} type="email" placeholder="Email" text="Email" value={email} onChange={e => setEmail (e.target.value)}/>
-            <Input isShown={showPassword} onClick={setShowPassword} error={error.password} isSubmit={isSubmit} type="password" placeholder="Password" text="Password" value={password} onChange={e => setPassword (e.target.value)}/>
+            <Input isShown={showPassword} onClick={setShowPassword} error={error.password} isSubmit={isSubmit} type="password" placeholder="Mot de passe" text="Mot de passe" value={password} onChange={e => setPassword (e.target.value)}/>
             {error.general && <p style={{color: '#dc2626', marginTop: '1rem', fontSize: '1rem'}}>{error.general}</p>}
             {resetMessage && (
               <>
                 <p style={{color: '#16a34a', marginTop: '1rem', fontSize: '1rem'}}>{resetMessage}</p>
                 <p style={{fontSize: '0.875rem', color: '#6b7280', marginTop: '0.5rem'}}>
-                  💡 Перевірте папку "Спам", якщо не бачите листа
+                  💡 Vérifiez le dossier "Spam" si vous ne voyez pas l'email
                 </p>
               </>
             )}
-            <Button type="submit" text="Увійти"/>
+            <Button type="submit" text="Se connecter"/>
             <p style={{marginTop: '1.5rem', fontSize: '1rem', textAlign: 'center'}}>
-              Немає аккаунту? <Link to="/signup" style={{color: '#7e22ce', fontWeight: '600', textDecoration: 'underline'}}>Зареєструватися</Link>
+              Pas de compte? <Link to="/signup" style={{color: '#7e22ce', fontWeight: '600', textDecoration: 'underline'}}>S'inscrire</Link>
             </p>
             <p style={{marginTop: '1rem', textAlign: 'center'}}>
               <span onClick={handlePasswordReset} style={{color: '#7e22ce', cursor: 'pointer', textDecoration: 'underline', fontSize: '1rem'}}>
-                Забули пароль?
+                Mot de passe oublié?
               </span>
             </p>
           </form>

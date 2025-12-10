@@ -33,23 +33,23 @@ const SignUp = () => {
 
    const errors = {};
    if (!email) {
-    errors.email = "Email is required";
+    errors.email = "L'email est requis";
    } else if (!/\S+@\S+\.\S+/.test(email)) {
-    errors.email = "Email is invalid";
+    errors.email = "L'email est invalide";
    }
    if (!username) {
-   errors.username = "Username is required";
+   errors.username = "Le nom d'utilisateur est requis";
    } else if (username.length < 5) {
-    errors.username = "Username must be at least 5 characters";
+    errors.username = "Le nom d'utilisateur doit contenir au moins 5 caractères";
    }
    if (!password) {
-    errors.password = "Password is required";
+    errors.password = "Le mot de passe est requis";
    } 
    if (password.length < 6) {
-    errors.password = "Password must be at least 6 characters";
+    errors.password = "Le mot de passe doit contenir au moins 6 caractères";
    }  
    if (password !== confirmpassword) {
-    errors.confirmpassword = "Passwords do not match";
+    errors.confirmpassword = "Les mots de passe ne correspondent pas";
    }
 
    setError(errors);
@@ -100,9 +100,9 @@ await set(userRef, {
     
     navigate('/greeting');
    } catch (error) {
-    console.error("Помилка реєстрації:", error);
+    console.error("Erreur d'inscription:", error);
     if (error.code === 'auth/email-already-in-use') {
-      setError({ email: "Email вже використовується" });
+      setError({ email: "Cet email est déjà utilisé" });
     } else {
       setError({ general: error.message });
     }
@@ -112,16 +112,16 @@ await set(userRef, {
     return (
     <div className="game-page">
       <div className="game-card" style={{maxWidth: '500px'}}>
-        <h1 className="game-title"> Реєстрація</h1>
+        <h1 className="game-title"> Inscription</h1>
         <form onSubmit={handleSubmit}>
           <Input error={error.email} isSubmit={isSubmit} type="email" placeholder="Email" text="Email" value={email} onChange={e => setEmail (e.target.value)}/>
-          <Input error={error.username} isSubmit={isSubmit} type="text" placeholder="Username" text="Username" value={username} onChange={e => setUsername (e.target.value)}/>
-          <Input isShown={showPassword} onClick={setShowPassword} error={error.password} isSubmit={isSubmit} type="password" placeholder="Password" text="Password" value={password} onChange={e => setPassword (e.target.value)}/>
-          <Input isShown={showConfirmPassword} onClick={setShowConfirmPassword} error={error.confirmpassword} isSubmit={isSubmit} type="password" placeholder="Repeat Password" text="Confirm Password" value={confirmpassword} onChange={e => setConfirmpassword (e.target.value)}/>
+          <Input error={error.username} isSubmit={isSubmit} type="text" placeholder="Nom d'utilisateur" text="Nom d'utilisateur" value={username} onChange={e => setUsername (e.target.value)}/>
+          <Input isShown={showPassword} onClick={setShowPassword} error={error.password} isSubmit={isSubmit} type="password" placeholder="Mot de passe" text="Mot de passe" value={password} onChange={e => setPassword (e.target.value)}/>
+          <Input isShown={showConfirmPassword} onClick={setShowConfirmPassword} error={error.confirmpassword} isSubmit={isSubmit} type="password" placeholder="Répéter le mot de passe" text="Confirmer le mot de passe" value={confirmpassword} onChange={e => setConfirmpassword (e.target.value)}/>
           {error.general && <p style={{color: '#dc2626', marginTop: '1rem', fontSize: '1rem'}}>{error.general}</p>}
-          <Button type="submit" text="Зареєструватися"/>
+          <Button type="submit" text="S'inscrire"/>
           <p style={{marginTop: '1.5rem', fontSize: '1rem', textAlign: 'center'}}>
-            Вже маєте аккаунт? <Link to="/signin" style={{color: '#7e22ce', fontWeight: '600', textDecoration: 'underline'}}>Увійти</Link>
+            Déjà un compte? <Link to="/signin" style={{color: '#7e22ce', fontWeight: '600', textDecoration: 'underline'}}>Se connecter</Link>
           </p>
         </form>
       </div>
