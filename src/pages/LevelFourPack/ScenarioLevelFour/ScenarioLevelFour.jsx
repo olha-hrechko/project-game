@@ -36,7 +36,7 @@ const ScenarioLevelFour = () => {
 
     const handleClickPostpone = async(selection) => {
         if (isDisabled) {
-            toast.info("Ви вже зробили вибір, чекайте на пораду");
+            toast.info("Tu as déjà fait un choix, attends le conseil");
             return;
         }
         setIsDisabled(true);
@@ -60,7 +60,7 @@ const ScenarioLevelFour = () => {
 
     const handleClickRepair = async(selection) => {
         if (isDisabled) {
-            toast.info("Ви вже зробили вибір, чекайте на пораду");
+            toast.info("Tu as déjà fait un choix, attends le conseil");
             return;
         }
         setIsDisabled(true);
@@ -90,7 +90,7 @@ const ScenarioLevelFour = () => {
 
     const handleClickBuyNew = async(selection) => {
         if (isDisabled) {
-            toast.info("Ви вже зробили вибір, чекайте на пораду");
+            toast.info("Tu as déjà fait un choix, attends le conseil");
             return;
         }
         setIsDisabled(true);
@@ -120,29 +120,29 @@ const ScenarioLevelFour = () => {
     return (
         <div className="game-page">
             <div className="game-card" style={{maxWidth: '800px'}}>
-                <h1 className="game-title">💥 Рівень 4: Несподіванка!</h1>
+                <h1 className="game-title">💥 Niveau 4: Surprise!</h1>
                 
                 {!choose && !advice && (
                     <div className="game-message-warning" style={{marginBottom: '2rem'}}>
                         <p style={{fontSize: '1.125rem', marginBottom: '1rem'}}>
-                            📱 Ти граєш у гру на планшеті і раптом він ламається!</p>
+                            📱 Tu joues à un jeu sur ta tablette et soudain elle se casse!</p>
                     </div>
                 )}
 
                 {!choose && !advice ? (
                     <div className="game-choices">
                         <Button 
-                            text="⏳ Відкласти планшет (не витрачати монети)" 
+                            text="⏳ Mettre de côté la tablette (ne pas dépenser de pièces)" 
                             onClick={() => handleClickPostpone("postpone")} 
                             choice
                         />
                         <Button 
-                            text="🔧 Відремонтувати (-15 монет)" 
+                            text="🔧 Réparer (-15 pièces)" 
                             onClick={() => handleClickRepair("repair")} 
                             choice
                         />
                         <Button 
-                            text="✨ Купити новий планшет (-45 монет)" 
+                            text="✨ Acheter une nouvelle tablette (-45 pièces)" 
                             onClick={() => handleClickBuyNew("buyNew")} 
                             choice
                         />
@@ -151,38 +151,38 @@ const ScenarioLevelFour = () => {
                     <div>
                         {choose && !advice && choose === "postpone" && (
                             <div className="game-message-success" style={{marginBottom: '1.5rem'}}>
-                                <p style={{fontSize: '1.125rem'}}>💪 Вирішив(ла) економити на основну ціль. Мудре рішення!</p>
+                                <p style={{fontSize: '1.125rem'}}>💪 Tu as décidé d'économiser pour ton objectif principal. Sage décision!</p>
                             </div>
                         )}
                         {choose && !advice && choose === "repair" && (
                             <div className="game-message-success" style={{marginBottom: '1.5rem'}}>
-                                <p style={{fontSize: '1.125rem'}}>🎮 Чудово! Тепер ти можеш грати на планшеті і далі збирати на мрію.</p>
+                                <p style={{fontSize: '1.125rem'}}>🎮 Super! Maintenant tu peux jouer sur ta tablette et continuer à économiser pour ton rêve.</p>
                             </div>
                         )}
                         {choose && !advice && choose === "buyNew" && (
                             <div className="game-message-success" style={{marginBottom: '1.5rem'}}>
-                                <p style={{fontSize: '1.125rem'}}>✨ Новий планшет! Тобі подобається гратися на ньому!</p>
+                                <p style={{fontSize: '1.125rem'}}>✨ Nouvelle tablette! Tu aimes jouer dessus!</p>
                             </div>
                         )}
                         
                         {advice === "postpone" && (
                             <div className="game-message-info">
-                                <p style={{fontSize: '1.125rem'}}>💡 Порада: Планшет відремонтуєш, якщо залишаться гроші після покупки основної цілі.</p>
+                                <p style={{fontSize: '1.125rem'}}>💡 Conseil: Tu répareras la tablette s'il reste de l'argent après l'achat de ton objectif principal.</p>
                             </div>
                         )}
                         {advice === "repair" && (
                             <div className="game-message-info">
-                                <p style={{fontSize: '1.125rem'}}>💡 Порада: Це найкраще рішення, тепер ти можеш мати робочий планшет і далі збирати на основну мрію.</p>
+                                <p style={{fontSize: '1.125rem'}}>💡 Conseil: C'est la meilleure décision, maintenant tu peux avoir une tablette fonctionnelle et continuer à économiser pour ton rêve principal.</p>
                             </div>
                         )}
                         {advice === "buyNew" && (
                             <div className="game-message-info">
-                                <p style={{fontSize: '1.125rem'}}>💡 Порада: Новий планшет! І друзі в захваті! Але ти віддалився від покупки основної мрії.</p>
+                                <p style={{fontSize: '1.125rem'}}>💡 Conseil: Nouvelle tablette! Et tes amis sont ravis! Mais tu t'es éloigné de l'achat de ton rêve principal.</p>
                             </div>
                         )}
                         
                         <div className="game-choices" style={{marginTop: '2rem'}}>
-                            <NavLink to="/level-four-output" className="game-link">▶️ Далі</NavLink>
+                            <NavLink to="/level-four-output" className="game-link">▶️ Suivant</NavLink>
                         </div>
                     </div>
                 )}

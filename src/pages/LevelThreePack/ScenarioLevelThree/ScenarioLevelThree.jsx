@@ -47,7 +47,7 @@ const ScenarioLevelThree = () => {
 
     const handleClickSaveAll = async(selection) => {
         if (isDisabled) {
-            toast.info("Ви вже зробили вибір, чекайте на пораду");
+            toast.info("Tu as déjà fait un choix, attends le conseil");
             return;
         }
         setIsDisabled(true);
@@ -74,7 +74,7 @@ const ScenarioLevelThree = () => {
 
     const handleClickSave80Percent = async(selection) => {
         if (isDisabled) {
-            toast.info("Ви вже зробили вибір, чекайте на пораду");
+            toast.info("Tu as déjà fait un choix, attends le conseil");
             return;
         }
         setIsDisabled(true);
@@ -102,7 +102,7 @@ const ScenarioLevelThree = () => {
 
     const handleClickSave40Percent = async(selection) => {
         if (isDisabled) {
-            toast.info("Ви вже зробили вибір, чекайте на пораду");
+            toast.info("Tu as déjà fait un choix, attends le conseil");
             return;
         }
         setIsDisabled(true);
@@ -133,11 +133,11 @@ const ScenarioLevelThree = () => {
             <div className="game-card" style={{maxWidth: '800px'}}>
                 {!envelopeOpened ? (
                     <>
-                        <h1 className="game-title">🎂 Рівень 3: День народження</h1>
+                        <h1 className="game-title">🎂 Niveau 3: Anniversaire</h1>
                         <div className="game-message-info" style={{marginBottom: '2rem'}}>
                             <p style={{ fontSize: '1.125rem', lineHeight: '1.75rem' }}>
-                                Сьогодні твій день народження 🎂. Ти отримуєш конверт з грошима від родичів. 
-                                Скільки монет тобі дали?
+                                Aujourd'hui c'est ton anniversaire 🎂. Tu reçois une enveloppe avec de l'argent de tes proches. 
+                                Combien de pièces as-tu reçu?
                             </p>
                         </div>
                         <div className="text-center py-10">
@@ -148,17 +148,17 @@ const ScenarioLevelThree = () => {
                                 💌
                             </button>
                             <p className="text-sm text-purple-800 mt-4 font-medium">
-                                Натисни на конверт
+                                Clique sur l'enveloppe
                             </p>
                         </div>
                     </>
                 ) : !choose && !advice ? (
                     <>
-                        <h1 className="game-title">🎁 Твій подарунок!</h1>
+                        <h1 className="game-title">🎁 Ton cadeau!</h1>
                         <div className="text-center my-8">
                             <p className="text-4xl font-bold text-purple-600 flex items-center justify-center gap-3">
                                 <span className="animate-[pulse_1.5s_ease-in-out_infinite]">
-                                    {giftAmount} монет!
+                                    {giftAmount} pièces!
                                 </span>
                                 <span className="text-5xl inline-block animate-[coinSpin_2s_linear_infinite]">
                                     🪙
@@ -167,23 +167,23 @@ const ScenarioLevelThree = () => {
                         </div>
                         <div className="game-message-info" style={{marginBottom: '2rem'}}>
                             <p style={{ fontSize: '1.125rem', lineHeight: '1.75rem' }}>
-                                Як ти скористаєшся грошима? Ти вже маєш більше досвіду, і знаєш, що якщо витратити все, 
-                                то покупка мрії, на яку ти збираєш - віддалиться.
+                                Comment vas-tu utiliser l'argent? Tu as déjà plus d'expérience et tu sais que si tu dépenses tout, 
+                                l'achat de ton rêve pour lequel tu économises - s'éloignera.
                             </p>
                         </div>
                         <div className="game-choices">
                             <Button 
-                                text="💎 Відкласти всі подаровані гроші" 
+                                text="💎 Mettre de côté tout l'argent reçu" 
                                 onClick={() => handleClickSaveAll("saveAll")} 
                                 choice
                             />
                             <Button 
-                                text="⚖️ Меншу частину витратити на подарунок для себе, іншу - відкласти" 
+                                text="⚖️ Dépenser une petite partie pour un cadeau, le reste mettre de côté" 
                                 onClick={() => handleClickSave80Percent("save80")} 
                                 choice
                             />
                             <Button 
-                                text="🎁 Більшу частину витратити на подарунок для себе, а іншу - відкласти" 
+                                text="🎁 Dépenser une grande partie pour un cadeau, le reste mettre de côté" 
                                 onClick={() => handleClickSave40Percent("save40")} 
                                 choice
                             />
@@ -191,49 +191,49 @@ const ScenarioLevelThree = () => {
                     </>
                 ) : (
                     <>
-                        <h1 className="game-title">✨ Твій вибір</h1>
+                        <h1 className="game-title">✨ Ton choix</h1>
                         
                         {choose && !advice && choose === "saveAll" && (
                             <div className="game-message-success" style={{marginBottom: '1.5rem'}}>
-                                <p style={{fontSize: '1.125rem'}}>💎 Чудове рішення! Ти дуже відповідально підходиш до своїх фінансів.</p>
+                                <p style={{fontSize: '1.125rem'}}>💎 Excellente décision! Tu gères tes finances de manière très responsable.</p>
                             </div>
                         )}
                         
                         {choose && !advice && choose === "save80" && (
                             <div className="game-message-success" style={{marginBottom: '1.5rem'}}>
-                                <p style={{fontSize: '1.125rem'}}>⚖️ Чудовий баланс між задоволенням і відповідальністю!</p>
+                                <p style={{fontSize: '1.125rem'}}>⚖️ Excellent équilibre entre plaisir et responsabilité!</p>
                             </div>
                         )}
                         
                         {choose && !advice && choose === "save40" && (
                             <div className="game-message-success" style={{marginBottom: '1.5rem'}}>
-                                <p style={{fontSize: '1.125rem'}}>🎁 Це твій крок вперед - ти не витрачаєш все!</p>
+                                <p style={{fontSize: '1.125rem'}}>🎁 C'est un pas en avant - tu ne dépenses pas tout!</p>
                             </div>
                         )}
                         
                         {advice === "saveAll" && (
                             <div className="game-message-success" style={{marginBottom: '1.5rem'}}>
-                                <p style={{fontSize: '1.125rem'}}>💡 Так ти вже дуже швидко дістанешся до цілі. Давай подивимось що очікує тебе далі.</p>
+                                <p style={{fontSize: '1.125rem'}}>💡 Ainsi tu atteindras ton objectif très rapidement. Voyons ce qui t'attend ensuite.</p>
                             </div>
                         )}
                         
                         {advice === "save80" && (
                             <div className="game-message-success" style={{marginBottom: '1.5rem'}}>
-                                <p style={{fontSize: '1.125rem'}}>💡 І собі приємно, і до цілі набагато ближче! Давай подивимось що очікує тебе далі.</p>
+                                <p style={{fontSize: '1.125rem'}}>💡 Tu te fais plaisir et tu es beaucoup plus proche de ton objectif! Voyons ce qui t'attend ensuite.</p>
                             </div>
                         )}
                         
                         {advice === "save40" && (
                             <div className="game-message-info" style={{marginBottom: '1.5rem'}}>
-                                <p style={{fontSize: '1.125rem'}}>💡 У тебе крутий подарунок на день народження! І тепер ти продумуєш своє рішення, 
-                                і не витрачаєш все! Давай подивимось що очікує тебе далі.</p>
+                                <p style={{fontSize: '1.125rem'}}>💡 Tu as un super cadeau d'anniversaire! Et maintenant tu réfléchis à ta décision, 
+                                et tu ne dépenses pas tout! Voyons ce qui t'attend ensuite.</p>
                             </div>
                         )}
                         
                         {(advice === "saveAll" || advice === "save80" || advice === "save40") && (
                             <div className="game-choices">
                                 <NavLink to="/level-three-output" className="game-link">
-                                    ▶️ Далі
+                                    ▶️ Suivant
                                 </NavLink>
                             </div>
                         )}
