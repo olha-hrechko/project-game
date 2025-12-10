@@ -1,14 +1,14 @@
 export const advices = {
-    econompattern: "Спробуйте витрачати більше",
+    econompattern: "Essaie de dépenser un peu plus",
     impulsivepattern: [
-        "💸 Ти весело проводив(ла) час, але часто витрачав(ла) гроші одразу. Спробуй планувати покупки та відкладай частину грошей на мрію. Це допоможе досягати великих цілей швидше!",
-        "🎯 Іноді імпульсивні покупки приносять радість, але вони віддаляють від твоєї мрії. Наступного разу обирай, що дійсно важливо, а решту відкладай.",
-        "💪 Ти отримав(ла) важливий урок: контроль витрат робить твої гроші сильнішими. Спробуй відкладати хоча б частину грошей кожного разу."
+        "💸 Tu t'es bien amusé(e), mais tu as souvent dépensé l'argent tout de suite. Essaie de planifier tes achats et mets de côté une partie de l'argent pour ton rêve. Cela t'aidera à atteindre tes grands objectifs plus rapidement!",
+        "🎯 Parfois les achats impulsifs apportent de la joie, mais ils t'éloignent de ton rêve. La prochaine fois, choisis ce qui est vraiment important et mets le reste de côté.",
+        "💪 Tu as appris une leçon importante: contrôler tes dépenses rend ton argent plus fort. Essaie de mettre de côté au moins une partie de l'argent à chaque fois."
     ],
-    strategicalpattern: "Ви на правильному шляху! Продовжуйте в тому ж дусі",
+    strategicalpattern: "Tu es sur la bonne voie! Continue comme ça",
     mixedpattern: [
-        "⚖️ Ти іноді економиш, іноді витрачаєш. Це добре, бо ти вчишся приймати рішення, але ще можна знайти баланс. Спробуй частіше відкладати гроші на мрію.",
-        "🔄 Твоя поведінка змішана - це означає, що ти експериментуєш. Наступного разу визнач, що для тебе найважливіше і роби маленькі кроки до великої мети.",
-        "📊 Спробуй правило 50/50: половину отриманих грошей відкладаєш на мрію, половину - на приємні дрібниці. Це допомагає одночасно радіти і планувати майбутнє."
+        "⚖️ Tu économises parfois, tu dépenses parfois. C'est bien car tu apprends à prendre des décisions, mais tu peux encore trouver l'équilibre. Essaie de mettre de l'argent de côté pour ton rêve plus souvent.",
+        "🔄 Ton comportement est mixte - cela signifie que tu expérimentes. La prochaine fois, détermine ce qui est le plus important pour toi et fais de petits pas vers un grand objectif.",
+        "📊 Essaie la règle 50/50: tu mets la moitié de l'argent reçu de côté pour ton rêve, l'autre moitié pour les petits plaisirs. Cela aide à se réjouir et à planifier l'avenir en même temps."
     ]
 };
