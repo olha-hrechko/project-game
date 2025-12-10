@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react'
 import { useUser } from '../../../context/UserContext.jsx';
 
-const FinancialPasseport = () => {
+const FinancialPassport = () => {
 
 const [advices, setAdvices] = React.useState([])
 const { user } = useUser();
-useEffect(() => {
 
   return (
     <div>
@@ -19,4 +18,4 @@ useEffect(() => {
   )
 }
 
-export default FinancialPasseport
+export default FinancialPassport

@@ -6,12 +6,12 @@ const PixelProgressBar = ({
 	max = 10,
 	pixelCount = 10,
 	pixelSize = 20,
-	filledColor = "#4caf50",
-	emptyColor = "#e0e0e0"
+	filledColor = "#22c55e",
+	emptyColor = "#e9d5ff"
 }) => {
 	const filledPixels = Math.round((value / max) * pixelCount);
 	return (
-		<div style={{ display: "flex", gap: 4 }}>
+		<div style={{ display: "flex", gap: 4, justifyContent: "center", flexWrap: "wrap" }}>
 			{[...Array(pixelCount)].map((_, i) => (
 				<div
 					key={i}
@@ -20,7 +20,8 @@ const PixelProgressBar = ({
 						height: pixelSize,
 						background: i < filledPixels ? filledColor : emptyColor,
 						borderRadius: 4,
-						border: "1px solid #888"
+						border: "2px solid " + (i < filledPixels ? filledColor : "#d8b4fe"),
+						transition: "all 0.3s ease"
 					}}
 				/>
 			))}

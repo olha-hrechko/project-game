@@ -4,7 +4,7 @@ import ProgressBar from '../../../components/ProgressBar/ProgressBar.jsx';
 import { NavLink } from 'react-router-dom';
 
 const GoalAchieved = () => {
-    const { user } = useUser
+  const { user } = useUser();
   return (
     <div>
       <p>Вітаю! Ти зібрав достатньо монет, щоб здійснити свою мрію!</p>

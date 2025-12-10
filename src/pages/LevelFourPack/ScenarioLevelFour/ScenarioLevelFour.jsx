@@ -18,7 +18,7 @@ const ScenarioLevelFour = () => {
             const timer = setTimeout(() => {
                 setAdvice(choose);
                 setChoose("");
-            }, 3000);
+            }, 4000);
 
             return () => clearTimeout(timer);
         }
@@ -29,10 +29,10 @@ const ScenarioLevelFour = () => {
             navigate("/");
         }
 
-        if (user.level >= 4 && !choose) { 
+        if (user.level >= 4 && !choose && !advice) { 
             navigate("/level-four-output");
         }        
-    }, [user.level, navigate]);
+    }, [user.level, navigate, advice]);
 
     const handleClickPostpone = async(selection) => {
         if (isDisabled) {
@@ -46,13 +46,15 @@ const ScenarioLevelFour = () => {
         await updatePlayerData(user.uid, {
             wisdom: newWisdom,
             level: 4,
-            result: { ...user.result, econompattern: newEconompattern }
+            choiselevelfour: selection,
+            result: { ...user.result, econompattern: newEconompattern + 1 }
         });
         setUser ({
             ...user,
             wisdom: newWisdom,
             level: 4,
-            result: { ...user.result, econompattern: newEconompattern }
+            choiselevelfour: selection,
+            result: { ...user.result, econompattern: newEconompattern + 1 }
         })
     }
 
@@ -65,14 +67,15 @@ const ScenarioLevelFour = () => {
         const newWallet = user.wallet - 15;
         const newWisdom = user.wisdom + 1;
         const newHappiness = user.happiness + 1;
-        const newStrategicpattern = user.result.strategicpattern + 2;
+        const newStrategicpattern = user.result.strategicpattern + 1;
         setChoose(selection);
         await updatePlayerData(user.uid, {
             wallet: newWallet,
             wisdom: newWisdom,
             happiness: newHappiness,
             level: 4,
-            result: { ...user.result, strategicpattern: newStrategicpattern }
+            choiselevelfour: selection,
+            result: { ...user.result, strategicpattern: newStrategicpattern}
         });
         setUser({
             ...user,
@@ -80,7 +83,8 @@ const ScenarioLevelFour = () => {
             wisdom: newWisdom,
             happiness: newHappiness,
             level: 4,
-            result: { ...user.result, strategicpattern: newStrategicpattern }
+            choiselevelfour: selection,
+            result: { ...user.result, strategicpattern: newStrategicpattern}
         });
     }
 
@@ -99,7 +103,8 @@ const ScenarioLevelFour = () => {
             happiness: newHappiness,
             reputation: newReputation,
             level: 4,
-            result: { ...user.result, impulsivepattern: user.result.impulsivepattern + 1 }
+            choiselevelfour: selection,
+            result: { ...user.result, impulsivepattern: user.result.impulsivepattern}
         });
         setUser({
             ...user,
@@ -107,56 +112,83 @@ const ScenarioLevelFour = () => {
             happiness: newHappiness,
             reputation: newReputation,
             level: 4,
-            result: { ...user.result, impulsivepattern: user.result.impulsivepattern + 1 }
+            choiselevelfour: selection,
+            result: { ...user.result, impulsivepattern: user.result.impulsivepattern}
         });
     }
 
     return (
-        <section>
-            <div style={{ textAlign: 'center', marginBottom: '30px' }}>
-                <p style={{ fontSize: '18px', marginBottom: '20px' }}>
-                    Ти граєш у гру на планшеті і раптом він ламається 📱🔧
-                </p>
-                <p style={{ fontSize: '16px', color: '#666' }}>
-                    Ціна нового планшету - 45 монет, ремонт деталі планшету - 15 монет.
-                </p>
-            </div>
+        <div className="game-page">
+            <div className="game-card" style={{maxWidth: '800px'}}>
+                <h1 className="game-title">💥 Рівень 4: Несподіванка!</h1>
+                
+                {!choose && !advice && (
+                    <div className="game-message-warning" style={{marginBottom: '2rem'}}>
+                        <p style={{fontSize: '1.125rem', marginBottom: '1rem'}}>
+                            📱 Ти граєш у гру на планшеті і раптом він ламається!</p>
+                    </div>
+                )}
 
-            {!choose && !advice ? (
-                <div>
-                    <Button 
-                        text="Відкласти планшет (почекати)" 
-                        onClick={() => handleClickPostpone("postpone")} 
-                    />
-                    <Button 
-                        text="Відремонтувати планшет - 15 монет" 
-                        onClick={() => handleClickRepair("repair")} 
-                    />
-                    <Button 
-                        text="Купити новий планшет - 45 монет" 
-                        onClick={() => handleClickBuyNew("buyNew")} 
-                    />
-                </div>
-            ) : (
-                <>
-                    {choose === "postpone" && <p>Вирішив економити на основну ціль. Мудре рішення!</p>}
-                    {choose === "repair" && <p>Чудово! Тепер ти можеш грати на планшеті і далі збирати на мрію.</p>}
-                    {choose === "buyNew" && <p>Новий планшет! Тобі подобається гратися на ньому планшеті!</p>}
-                    
-                    {advice === "postpone" && (
-                        <p>Порада: Планшет відремонтую, якщо залишаться гроші після покупки основної цілі.</p>
-                    )}
-                    {advice === "repair" && (
-                        <p>Порада: Це найкраще рішення, тепер ти можеш мати робочий планшет і далі збирати на основну мрію.</p>
-                    )}
-                    {advice === "buyNew" && (
-                        <p>Порада: Новий планшет! І друзі в захваті! Але ти віддалився від покупки основної мрії.</p>
-                    )}
-                    <NavLink to="/level-four-output">Далі</NavLink>
-                </>
-            )}
-            <ToastContainer />
-        </section>
+                {!choose && !advice ? (
+                    <div className="game-choices">
+                        <Button 
+                            text="⏳ Відкласти планшет (не витрачати монети)" 
+                            onClick={() => handleClickPostpone("postpone")} 
+                            choice
+                        />
+                        <Button 
+                            text="🔧 Відремонтувати (-15 монет)" 
+                            onClick={() => handleClickRepair("repair")} 
+                            choice
+                        />
+                        <Button 
+                            text="✨ Купити новий планшет (-45 монет)" 
+                            onClick={() => handleClickBuyNew("buyNew")} 
+                            choice
+                        />
+                    </div>
+                ) : (
+                    <div>
+                        {choose && !advice && choose === "postpone" && (
+                            <div className="game-message-success" style={{marginBottom: '1.5rem'}}>
+                                <p style={{fontSize: '1.125rem'}}>💪 Вирішив(ла) економити на основну ціль. Мудре рішення!</p>
+                            </div>
+                        )}
+                        {choose && !advice && choose === "repair" && (
+                            <div className="game-message-success" style={{marginBottom: '1.5rem'}}>
+                                <p style={{fontSize: '1.125rem'}}>🎮 Чудово! Тепер ти можеш грати на планшеті і далі збирати на мрію.</p>
+                            </div>
+                        )}
+                        {choose && !advice && choose === "buyNew" && (
+                            <div className="game-message-success" style={{marginBottom: '1.5rem'}}>
+                                <p style={{fontSize: '1.125rem'}}>✨ Новий планшет! Тобі подобається гратися на ньому!</p>
+                            </div>
+                        )}
+                        
+                        {advice === "postpone" && (
+                            <div className="game-message-info">
+                                <p style={{fontSize: '1.125rem'}}>💡 Порада: Планшет відремонтуєш, якщо залишаться гроші після покупки основної цілі.</p>
+                            </div>
+                        )}
+                        {advice === "repair" && (
+                            <div className="game-message-info">
+                                <p style={{fontSize: '1.125rem'}}>💡 Порада: Це найкраще рішення, тепер ти можеш мати робочий планшет і далі збирати на основну мрію.</p>
+                            </div>
+                        )}
+                        {advice === "buyNew" && (
+                            <div className="game-message-info">
+                                <p style={{fontSize: '1.125rem'}}>💡 Порада: Новий планшет! І друзі в захваті! Але ти віддалився від покупки основної мрії.</p>
+                            </div>
+                        )}
+                        
+                        <div className="game-choices" style={{marginTop: '2rem'}}>
+                            <NavLink to="/level-four-output" className="game-link">▶️ Далі</NavLink>
+                        </div>
+                    </div>
+                )}
+                <ToastContainer />
+            </div>
+        </div>
     );
 };
 

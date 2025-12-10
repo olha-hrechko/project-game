@@ -7,6 +7,8 @@ import { useLocation } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../firebase';
 import { useHeaderVisibility } from '../../context/HeaderVisibilityContext.jsx';
+import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher.jsx';
+import { useLanguage } from '../../context/LanguageContext.jsx';
 
 const GAME_PAGES = [
   '/money-city',
@@ -47,6 +49,7 @@ const Header = () => {
   const [goalText, setGoalText] = useState('');
   const location = useLocation();
   const { hideStats } = useHeaderVisibility();
+  const { language, changeLanguage } = useLanguage();
 
   useEffect(() => {
     if (user) {
@@ -82,37 +85,76 @@ const Header = () => {
     }
   };
 
-  console.log("Header user.progressbar:", user?.progressbar);
-
   return (
-    <header className=" bg-amber-300 p-8">
-      <div className="max-w-3xl mx-auto">
-        <nav className="flex justify-between">
-          <h1 className="text-4xl font-bold">
-            Financial Adventure
-          </h1>
-          <div className='flex'>
-            {user && <NavLink to="/">Home</NavLink>}
-            {user && <NavLink to="/introduction">Пояснення правил гри</NavLink>}
-            {user && <p>{user.username}</p>}
-            {user && <Button text="Logout" onClick={handleLogout} />}
-            {!hideStats && user && user.goal && goalurls.includes(location.pathname) && !OUTPUT_PAGES.includes(location.pathname) && <p>{goalText}</p>}
-            {!hideStats && user && user.goal && walleturls.includes(location.pathname) && !OUTPUT_PAGES.includes(location.pathname) && <p>Гаманець: {user.wallet} монет</p>}
-            {!hideStats && user && user.goal && walleturls.includes(location.pathname) && !OUTPUT_PAGES.includes(location.pathname) && <p>Мудрість: {user.wisdom}</p>}
-            {!hideStats && user && user.goal && walleturls.includes(location.pathname) && !OUTPUT_PAGES.includes(location.pathname) && <p>Щастя: {user.happiness}</p>}
-            {!hideStats && user && user.goal && walleturls.includes(location.pathname) && !OUTPUT_PAGES.includes(location.pathname) && <p>Репутація: {user.reputation}</p>}
-            {!hideStats && user && user.goal && urls.includes(location.pathname) && !OUTPUT_PAGES.includes(location.pathname) && (
-              <PixelProgressBar
-                value={user.wallet}
-                max={goalprise}
-                pixelCount={10}
-                pixelSize={20}
-                filledColor="#4caf50"
-                emptyColor="#e0e0e0"
-              />
+    <header className="game-header">
+      <div className="game-header-container">
+        {/* Top Row: Brand and Navigation */}
+        <div className="game-header-top-row">
+          <div className="game-header-brand">
+            <h1 className="game-header-title">💰 Financial Adventure</h1>
+          </div>
+          
+          {/* Navigation Section - Top Right */}
+          <nav className="game-header-nav">
+            <LanguageSwitcher 
+              language={language} 
+              onLanguageChange={changeLanguage}
+            />
+            {user && <span className="game-header-username">👤 {user.username}</span>}
+            {user && <NavLink to="/" className="game-header-nav-button">🏠 Головна</NavLink>}
+            {user && <button onClick={handleLogout} className="game-header-logout-button">🚪 Вийти</button>}
+          </nav>
+        </div>
+
+        {/* Stats Section - Horizontal Layout */}
+        {!hideStats && user && user.goal && walleturls.includes(location.pathname) && !OUTPUT_PAGES.includes(location.pathname) && (
+          <div className="game-header-stats-wrapper-horizontal">
+            {/* Goal Block - Left */}
+            <div className="game-header-goal-block">
+              <div className="game-stat-label">🎯 Твоя ціль</div>
+              <div className="game-stat-value-large">{goalText}</div>
+            </div>
+
+            {/* Three stats vertically - Middle */}
+            <div className="game-header-stats-vertical">
+              <div className="game-stat-badge-mini">
+                <span className="game-stat-label-mini">🧠 Мудрість:</span>
+                <span className="game-stat-value-mini">{user.wisdom}</span>
+              </div>
+              <div className="game-stat-badge-mini">
+                <span className="game-stat-label-mini">⭐ Репутація:</span>
+                <span className="game-stat-value-mini">{user.reputation}</span>
+              </div>
+              <div className="game-stat-badge-mini">
+                <span className="game-stat-label-mini">😊 Щастя:</span>
+                <span className="game-stat-value-mini">{user.happiness}</span>
+              </div>
+            </div>
+
+            {/* Wallet Block - Right */}
+            <div className="game-header-wallet-block">
+              <div className="game-stat-label">💰 Гаманець</div>
+              <div className="game-stat-value-xlarge">{user.wallet}</div>
+            </div>
+
+            {/* Progress Bar - Below all in full width */}
+            {urls.includes(location.pathname) && (
+              <div className="game-progress-container-full">
+                <div className="game-progress-label">
+                  Прогрес: {user.wallet} / {goalprise}
+                </div>
+                <PixelProgressBar
+                  value={user.wallet}
+                  max={goalprise}
+                  pixelCount={10}
+                  pixelSize={20}
+                  filledColor="#22c55e"
+                  emptyColor="#e9d5ff"
+                />
+              </div>
             )}
           </div>
-        </nav>
+        )}
       </div>
     </header>
   )

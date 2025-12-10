@@ -73,7 +73,7 @@ const SignUp = () => {
       progressbar: 0,
       goal: '',
       level: 0,
-      result: {impulsivepattern: 0, mixedpattern: 0, strategicalpattern: 0, econompattern: 0}
+      result: {impulsivepattern: 0, mixedpattern: 0, strategicpattern: 0, econompattern: 0}
     });
 
     setUser({ 
@@ -87,7 +87,7 @@ const SignUp = () => {
       progressbar: 0,
       goal: '',
       level: 0,
-      result: {impulsivepattern: 0, mixedpattern: 0, strategicalpattern: 0, econompattern: 0}
+      result: {impulsivepattern: 0, mixedpattern: 0, strategicpattern: 0, econompattern: 0}
     });
     
     navigate('/greeting');
@@ -102,18 +102,21 @@ const SignUp = () => {
 }
 
     return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <Input error={error.email} isSubmit={isSubmit} type="email" placeholder="Email" text="Email" value={email} onChange={e => setEmail (e.target.value)}/>
-        <Input error={error.username} isSubmit={isSubmit} type="text" placeholder="Username" text="Username" value={username} onChange={e => setUsername (e.target.value)}/>
-        <Input isShown={showPassword} onClick={setShowPassword} error={error.password} isSubmit={isSubmit} type="password" placeholder="Password" text="Password" value={password} onChange={e => setPassword (e.target.value)}/>
-        <Input isShown={showConfirmPassword} onClick={setShowConfirmPassword} error={error.confirmpassword} isSubmit={isSubmit} type="password" placeholder="Repeat Password" text="Confirm Password" value={confirmpassword} onChange={e => setConfirmpassword (e.target.value)}/>
-        {error.general && <p style={{color: 'red', marginTop: '10px'}}>{error.general}</p>}
-        <Button type="submit" text="Sign Up"/>
-        <p>
-          Вже маєте аккаунт? <Link to="/signin">Увійти</Link>
-        </p>
-      </form>
+    <div className="game-page">
+      <div className="game-card" style={{maxWidth: '500px'}}>
+        <h1 className="game-title"> Реєстрація</h1>
+        <form onSubmit={handleSubmit}>
+          <Input error={error.email} isSubmit={isSubmit} type="email" placeholder="Email" text="Email" value={email} onChange={e => setEmail (e.target.value)}/>
+          <Input error={error.username} isSubmit={isSubmit} type="text" placeholder="Username" text="Username" value={username} onChange={e => setUsername (e.target.value)}/>
+          <Input isShown={showPassword} onClick={setShowPassword} error={error.password} isSubmit={isSubmit} type="password" placeholder="Password" text="Password" value={password} onChange={e => setPassword (e.target.value)}/>
+          <Input isShown={showConfirmPassword} onClick={setShowConfirmPassword} error={error.confirmpassword} isSubmit={isSubmit} type="password" placeholder="Repeat Password" text="Confirm Password" value={confirmpassword} onChange={e => setConfirmpassword (e.target.value)}/>
+          {error.general && <p style={{color: '#dc2626', marginTop: '1rem', fontSize: '1rem'}}>{error.general}</p>}
+          <Button type="submit" text="Зареєструватися"/>
+          <p style={{marginTop: '1.5rem', fontSize: '1rem', textAlign: 'center'}}>
+            Вже маєте аккаунт? <Link to="/signin" style={{color: '#7e22ce', fontWeight: '600', textDecoration: 'underline'}}>Увійти</Link>
+          </p>
+        </form>
+      </div>
     </div>
   )
 }

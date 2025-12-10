@@ -25,11 +25,16 @@ import LevelFourOutput from "./pages/LevelFourPack/LevelFourOutput/LevelFourOutp
 import LevelFive from "./pages/LevelFivePack/LevelFive/LevelFive.jsx";
 import ScenarioLevelFive from "./pages/LevelFivePack/ScenarioLevelFive/ScenarioLevelFive.jsx";
 import LevelFiveOutput from "./pages/LevelFivePack/LevelFiveOutput/LevelFiveOutput.jsx";
+import GoalNotAchieved from "./pages/FinalPages/GoalNotAchieved/GoalNotAchieved.jsx";
+import GoalAchieved from "./pages/FinalPages/GoalAchieved/GoalAchieved.jsx";
+import FinancialPassport from "./pages/FinalPages/FinancialPassport/FinancialPassport.jsx";
+import { LanguageProvider } from "./context/LanguageContext.jsx";
 
 function App() {
   
   return (
-    <BrowserRouter>
+    <LanguageProvider>
+      <BrowserRouter>
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -55,9 +60,14 @@ function App() {
         <Route path="/level-five" element={<LevelFive />} />
         <Route path="/scenario-level-five" element={<ScenarioLevelFive />} />
         <Route path="/level-five-output" element={<LevelFiveOutput />} />
+        <Route path="/goal-not-achieved" element={<GoalNotAchieved />} />
+        <Route path="/goal-achieved" element={<GoalAchieved />} />
+        <Route path="/financial-passport" element={<FinancialPassport />} />
+        <Route path="/not-found" element={<NotFound />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
+    </LanguageProvider>
   );
 }
 

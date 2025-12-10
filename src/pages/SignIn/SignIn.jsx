@@ -108,29 +108,32 @@ const SignIn = () => {
   };
 
       return (
-      <div>
-        <form onSubmit={handleSubmit}>
-          <Input error={error.email} isSubmit={isSubmit} type="email" placeholder="Email" text="Email" value={email} onChange={e => setEmail (e.target.value)}/>
-          <Input isShown={showPassword} onClick={setShowPassword} error={error.password} isSubmit={isSubmit} type="password" placeholder="Password" text="Password" value={password} onChange={e => setPassword (e.target.value)}/>
-          {error.general && <p style={{color: 'red', marginTop: '10px'}}>{error.general}</p>}
-          {resetMessage && (
-            <>
-              <p style={{color: 'green', marginTop: '10px'}}>{resetMessage}</p>
-              <p style={{fontSize: '12px', color: '#666', marginTop: '5px'}}>
-                💡 Перевірте папку "Спам", якщо не бачите листа
-              </p>
-            </>
-          )}
-          <Button type="submit" text="Sign in"/>
-          <p>
-            Немає аккаунту? <Link to="/signup">Зареєструватися</Link>
-          </p>
-          <p>
-            <span onClick={handlePasswordReset} style={{color: '#007bff', cursor: 'pointer', textDecoration: 'underline'}}>
-              Забули пароль?
-            </span>
-          </p>
-        </form>
+      <div className="game-page">
+        <div className="game-card" style={{maxWidth: '500px'}}>
+          <h1 className="game-title"> Вхід</h1>
+          <form onSubmit={handleSubmit}>
+            <Input error={error.email} isSubmit={isSubmit} type="email" placeholder="Email" text="Email" value={email} onChange={e => setEmail (e.target.value)}/>
+            <Input isShown={showPassword} onClick={setShowPassword} error={error.password} isSubmit={isSubmit} type="password" placeholder="Password" text="Password" value={password} onChange={e => setPassword (e.target.value)}/>
+            {error.general && <p style={{color: '#dc2626', marginTop: '1rem', fontSize: '1rem'}}>{error.general}</p>}
+            {resetMessage && (
+              <>
+                <p style={{color: '#16a34a', marginTop: '1rem', fontSize: '1rem'}}>{resetMessage}</p>
+                <p style={{fontSize: '0.875rem', color: '#6b7280', marginTop: '0.5rem'}}>
+                  💡 Перевірте папку "Спам", якщо не бачите листа
+                </p>
+              </>
+            )}
+            <Button type="submit" text="Увійти"/>
+            <p style={{marginTop: '1.5rem', fontSize: '1rem', textAlign: 'center'}}>
+              Немає аккаунту? <Link to="/signup" style={{color: '#7e22ce', fontWeight: '600', textDecoration: 'underline'}}>Зареєструватися</Link>
+            </p>
+            <p style={{marginTop: '1rem', textAlign: 'center'}}>
+              <span onClick={handlePasswordReset} style={{color: '#7e22ce', cursor: 'pointer', textDecoration: 'underline', fontSize: '1rem'}}>
+                Забули пароль?
+              </span>
+            </p>
+          </form>
+        </div>
       </div>
     )
 };

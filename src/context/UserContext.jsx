@@ -30,8 +30,13 @@ export const UserProvider = ({ children }) => {
             uid: firebaseUser.uid, 
           });
         } else {
-          console.log("No user data found in database");
-          setUser({ email: firebaseUser.email });
+          console.log("No user data found in database - user needs to complete profile");
+          // Встановлюємо базові дані, щоб HomePage міг показати повідомлення
+          setUser({ 
+            email: firebaseUser.email,
+            uid: firebaseUser.uid,
+            username: null // Вказує, що профіль не завершений
+          });
         }
       } else {
         setUser(null);
