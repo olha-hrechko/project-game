@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { updatePlayerData } from '../../../firebase.js';
 import { useUser } from '../../../context/UserContext.jsx';
-import { useProgressBar } from '../../../context/ProgressBarContext.jsx';
 import { ToastContainer, toast } from 'react-toastify';
 import { NavLink } from "react-router-dom";
 import Button from "../../../components/Button/Button.jsx";
@@ -11,7 +10,6 @@ const ScenarioLevelTwo = () => {
     const [choose, setChoose] = useState("");
     const [advice, setAdvice] = useState("");
     const [isDisabled, setIsDisabled] = useState(false);
-    const { progress, setProgress } = useProgressBar();
     const { user, setUser } = useUser();
     const navigate = useNavigate();
 
@@ -43,22 +41,18 @@ const ScenarioLevelTwo = () => {
         }
         setIsDisabled(true);
         const newWisdom = user.wisdom + 1;
-        const newProgress = user.progressbar + 0;
         setChoose(selection);
         await updatePlayerData(user.uid, {
             wisdom: newWisdom,
-            progressbar: newProgress,
             level: 2,
             result: { ...user.result, econompattern: user.result.econompattern + 1 }
         });
         setUser({
             ...user,
             wisdom: newWisdom,
-            progressbar: newProgress,
             level: 2,
             result: { ...user.result, econompattern: user.result.econompattern + 1 }
         });
-        setProgress(newProgress);
     }
 
     const handleClickBuyMarketplace = async(selection) => {
@@ -69,12 +63,10 @@ const ScenarioLevelTwo = () => {
         setIsDisabled(true);
         const newWallet = user.wallet - 25;
         const newWisdom = user.wisdom + 1;
-        const newProgress = user.progressbar - 1;
         setChoose(selection);
         await updatePlayerData(user.uid, {
             wallet: newWallet,
             wisdom: newWisdom,
-            progressbar: newProgress,
             level: 2,
             result: { ...user.result, econompattern: user.result.econompattern + 1 }
         });
@@ -82,11 +74,9 @@ const ScenarioLevelTwo = () => {
             ...user,
             wallet: newWallet,
             wisdom: newWisdom,
-            progressbar: newProgress,
             level: 2,
             result: { ...user.result, econompattern: user.result.econompattern + 1 }
         });
-        setProgress(newProgress);
     }
 
     const handleClickBuyProfessional = async(selection) => {
@@ -97,22 +87,18 @@ const ScenarioLevelTwo = () => {
         setIsDisabled(true);
         const newWallet = user.wallet - 60;
         const newHappiness = user.happiness + 2;
-        const newProgress = user.progressbar - 2;
         setChoose(selection);
         await updatePlayerData(user.uid, {
             wallet: newWallet,
             happiness: newHappiness,
-            progressbar: newProgress,
             level: 2
         });
         setUser({
             ...user,
             wallet: newWallet,
             happiness: newHappiness,
-            progressbar: newProgress,
             level: 2
         });
-        setProgress(newProgress);
     }
 
     return (

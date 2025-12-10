@@ -1,7 +1,6 @@
 import { useState, useEffect, use } from "react";
 import { savePlayerData, updatePlayerData } from '../../../firebase.js';
 import { useUser } from '../../../context/UserContext.jsx';
-import { useProgressBar } from '../../../context/ProgressBarContext.jsx';
 import { useHeaderVisibility } from '../../../context/HeaderVisibilityContext.jsx';
 import { ToastContainer, toast } from 'react-toastify';
 import { NavLink } from "react-router-dom";
@@ -13,7 +12,6 @@ const ScenarioLevelOne = () => {
     const [choose, setChoose] = useState("");
     const [advice, setAdvice] = useState("");
     const [isDisabled, setIsDisabled] = useState(false);
-    const { progress, setProgress } = useProgressBar();
     const { user, setUser } = useUser();
     const { hideStats, setHideStats } = useHeaderVisibility();
     const navigate = useNavigate();
@@ -62,6 +60,7 @@ const ScenarioLevelOne = () => {
             wisdom: newWisdom,
             happiness: newHappiness,
             progressbar: newProgressBar,
+
             level: 0
             // goal зберігається!
         });
@@ -74,7 +73,6 @@ const ScenarioLevelOne = () => {
             progressbar: newProgressBar,
             level: 0
         });
-        setProgress(0);
         setChoose("");
         setAdvice("");
         setIsDisabled(false);
@@ -94,7 +92,6 @@ const ScenarioLevelOne = () => {
         await updatePlayerData(user.uid, {
             wallet: newWallet,
             wisdom: newWisdom,
-            progressbar: 2,
             level: 1,
             result: { ...user.result, econompattern: newEconompattern }
         });
@@ -102,12 +99,10 @@ const ScenarioLevelOne = () => {
             ...user,
             wallet: newWallet,
             wisdom: newWisdom,
-            progressbar: 2,
             level: 1,
             result: { ...user.result, econompattern: newEconompattern }
         })
         console.log("Updated user:", user);
-        setProgress(2);
         // Logic for not wasting money
     }
     const handleClickWasteHalfOFMoney = async(selection) => {
@@ -125,7 +120,6 @@ const ScenarioLevelOne = () => {
             wallet: newWallet,
             happiness: newHappiness,
             wisdom: newWisdom,
-            progressbar: 1,
             level: 1,
             result: { ...user.result, econompattern: newEconompattern }
         });
@@ -134,11 +128,9 @@ const ScenarioLevelOne = () => {
             wallet: newWallet,
             happiness: newHappiness,
             wisdom: newWisdom,
-            progressbar: 1,
             level: 1,
             result: { ...user.result, econompattern: newEconompattern }
         });
-        setProgress(1);
         // Logic for wasting half of the money
     }
     const handleClickWasteAllMoney = async(selection) => {
@@ -147,24 +139,19 @@ const ScenarioLevelOne = () => {
             return;
         }
         setIsDisabled(true);
-        //setWallet(prev => prev + 0);
         const newHappiness = user.happiness + 3;
-        //setHappiness(newHappiness);
         setChoose(selection);
         await updatePlayerData(user.uid, {
             wallet: user.wallet + 0,
             happiness: newHappiness,
-            progressbar: 0,
             level: 1
         });
         setUser({
             ...user,
             wallet: user.wallet + 0,
             happiness: newHappiness,
-            progressbar: 0,
             level: 1
         });
-        setProgress(0);
         // Logic for wasting all the money
     }
     return (

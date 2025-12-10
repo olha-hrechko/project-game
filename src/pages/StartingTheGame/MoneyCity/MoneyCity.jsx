@@ -10,7 +10,7 @@ import { updatePlayerData } from '../../../firebase.js';
 const MoneyCity = () => {
   const navigate = useNavigate();
   //const { goal, setGoal } = useGoal();
-  const {user, setUser} = useUser();
+  const { user, setUser } = useUser();
   const handleClick = async (selection) => {
     await updatePlayerData(user.uid, {
       goal: selection
@@ -25,16 +25,16 @@ const MoneyCity = () => {
     <main>
       <h2>Вітаю у Місті Грошей!</h2>
       <p>Оберіть ціль, яку хочете досягти, та почніть заробляти гроші!</p>
-      <Button text="Велосипед - 250 монет" onClick={() => {
+      <Button text="Міні-Робот Emo - 120 монет" onClick={() => {
+        handleClick('emo')
+      }}
+      />
+      <Button text="Велосипед - 160 монет" onClick={() => {
         handleClick('velo')
       }}
       />
-      <Button text="Ігровий компʼютер - 320 монет" onClick={() => {
+      <Button text="Ігровий компʼютер - 200 монет" onClick={() => {
         handleClick('gamecomputer')
-      }}
-      />
-      <Button text="Міні-Робот Emo - 210 монет" onClick={() => {
-        handleClick('emo')
       }}
       />
       {user && user.goal && <NavLink to="/game-page">Почати рівень</NavLink>}

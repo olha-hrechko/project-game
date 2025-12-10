@@ -10,16 +10,15 @@ const LevelOneOutput = () => {
     const navigate = useNavigate();
     const { user, setUser } = useUser();
 
+    // Визначаємо ціну цілі як в Header
+    const goalprise = user?.goal === 'emo' ? 120 : user?.goal === 'velo' ? 160 : user?.goal === 'gamecomputer' ? 200 : 0;
+
 
     const handleClickStart = async () => {
         const newWallet = 0
-        //setWallet(newWallet);
         const newWisdom = 0
-        //setWisdom(newWisdom);
         const newHappiness = 0
-        //setHappiness(newHappiness);
         const newProgressBar = 0
-        //setProgress(newProgressBar);
         await updatePlayerData(user.uid, {
             wallet: newWallet,
             wisdom: newWisdom,
@@ -41,12 +40,15 @@ const LevelOneOutput = () => {
         navigate("/money-city");
     }
 
+    console.log("LevelOneOutput - user.progressbar:", user?.progressbar);
+
     return (
         <section>
             <p>Wallet: {user.wallet}</p>
             <p>Happiness: {user.happiness}</p>
             <p>Wisdom: {user.wisdom}</p>
-            <PixelProgressBar value={user.progressbar} />
+            <p>Progress: {user.progressbar}</p>
+            <PixelProgressBar value={user.wallet} max={goalprise} pixelCount={10} />
             <Button onClick={handleClickStart} text="Restart Level One" />
             <NavLink to="/level-two">Next Level</NavLink>
         </section>
