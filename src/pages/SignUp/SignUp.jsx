@@ -62,19 +62,27 @@ const SignUp = () => {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
     
-    const userRef = ref(database, "users/" + user.uid);
-    await set(userRef, {
-      email: user.email,
-      username: username,
-      wallet: 0,
-      happiness: 0,
-      wisdom: 0,
-      reputation: 0,
-      progressbar: 0,
-      goal: '',
-      level: 0,
-      result: {impulsivepattern: 0, mixedpattern: 0, strategicpattern: 0, econompattern: 0}
-    });
+const safeUsername = username.replace(/[.#$/\[\]]/g, "_");
+
+const userRef = ref(database, `users/${user.uid}`);
+
+await set(userRef, {
+  email: user.email,
+  username: safeUsername, 
+  wallet: 0,
+  happiness: 0,
+  wisdom: 0,
+  reputation: 0,
+  progressbar: 0,
+  goal: '',
+  level: 0,
+  result: { 
+    impulsivepattern: 0, 
+    mixedpattern: 0, 
+    strategicpattern: 0, 
+    econompattern: 0 
+  }
+});
 
     setUser({ 
       email: user.email, 

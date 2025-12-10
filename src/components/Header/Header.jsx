@@ -7,8 +7,6 @@ import { useLocation } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../firebase';
 import { useHeaderVisibility } from '../../context/HeaderVisibilityContext.jsx';
-import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher.jsx';
-import { useLanguage } from '../../context/LanguageContext.jsx';
 
 const GAME_PAGES = [
   '/money-city',
@@ -49,7 +47,6 @@ const Header = () => {
   const [goalText, setGoalText] = useState('');
   const location = useLocation();
   const { hideStats } = useHeaderVisibility();
-  const { language, changeLanguage } = useLanguage();
 
   useEffect(() => {
     if (user) {
@@ -96,10 +93,6 @@ const Header = () => {
           
           {/* Navigation Section - Top Right */}
           <nav className="game-header-nav">
-            <LanguageSwitcher 
-              language={language} 
-              onLanguageChange={changeLanguage}
-            />
             {user && <span className="game-header-username">👤 {user.username}</span>}
             {user && <NavLink to="/" className="game-header-nav-button">🏠 Головна</NavLink>}
             {user && <button onClick={handleLogout} className="game-header-logout-button">🚪 Вийти</button>}

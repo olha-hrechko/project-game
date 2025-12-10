@@ -28,13 +28,11 @@ import LevelFiveOutput from "./pages/LevelFivePack/LevelFiveOutput/LevelFiveOutp
 import GoalNotAchieved from "./pages/FinalPages/GoalNotAchieved/GoalNotAchieved.jsx";
 import GoalAchieved from "./pages/FinalPages/GoalAchieved/GoalAchieved.jsx";
 import FinancialPassport from "./pages/FinalPages/FinancialPassport/FinancialPassport.jsx";
-import { LanguageProvider } from "./context/LanguageContext.jsx";
 
 function App() {
   
   return (
-    <LanguageProvider>
-      <BrowserRouter>
+    <BrowserRouter>
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -67,7 +65,6 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
-    </LanguageProvider>
   );
 }
 
