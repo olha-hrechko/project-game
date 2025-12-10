@@ -36,7 +36,7 @@ const ScenarioLevelTwo = () => {
 
     const handleClickNotBuy = async(selection) => {
         if (isDisabled) {
-            toast.info("Ви вже зробили вибір, чекайте на пораду");
+            toast.info("Tu as déjà fait un choix, attends le conseil");
             return;
         }
         setIsDisabled(true);
@@ -60,7 +60,7 @@ const ScenarioLevelTwo = () => {
 
     const handleClickBuyMarketplace = async(selection) => {
         if (isDisabled) {
-            toast.info("Ви вже зробили вибір, чекайте на пораду");
+            toast.info("Tu as déjà fait un choix, attends le conseil");
             return;
         }
         setIsDisabled(true);
@@ -87,7 +87,7 @@ const ScenarioLevelTwo = () => {
 
     const handleClickBuyProfessional = async(selection) => {
         if (isDisabled) {
-            toast.info("Ви вже зробили вибір, чекайте на пораду");
+            toast.info("Tu as déjà fait un choix, attends le conseil");
             return;
         }
         setIsDisabled(true);
@@ -115,29 +115,29 @@ const ScenarioLevelTwo = () => {
     return (
         <div className="game-page">
             <div className="game-card" style={{maxWidth: '800px'}}>
-                <h1 className="game-title">🛒 Рівень 2: Пошук вигідної пропозиції</h1>
+                <h1 className="game-title">🛍️ Niveau 2: Recherche de bonne affaire</h1>
                 
                 {!choose && !advice && (
                     <>
                         <div className="game-message-info" style={{marginBottom: '2rem'}}>
                             <p style={{fontSize: '1.125rem', lineHeight: '1.75rem'}}>
-                                Твоє хобі потребує нових матеріалів. Що робити?
+                                Ton hobby a besoin de nouveaux matériaux. Que faire?
                             </p>
                         </div>
                         
                         <div className="game-choices">
                             <Button 
-                                text="💭 Не купувати, обійтися тим, що є" 
+                                text="💭 Ne pas acheter, utiliser ce qu'on a" 
                                 onClick={() => handleClickNotBuy("notBuy")} 
                                 choice
                             />
                             <Button 
-                                text="🛍️ Купити набір матеріалів на маркетплейсі за 25 монет" 
+                                text="🛍️ Acheter un ensemble de matériaux sur marketplace pour 25 pièces" 
                                 onClick={() => handleClickBuyMarketplace("buyMarketplace")} 
                                 choice
                             />
                             <Button 
-                                text="⭐ Купити професійний набір за 60 монет" 
+                                text="⭐ Acheter un ensemble professionnel pour 60 pièces" 
                                 onClick={() => handleClickBuyProfessional("buyProfessional")} 
                                 choice
                             />
@@ -147,44 +147,44 @@ const ScenarioLevelTwo = () => {
                 
                 {choose && !advice && choose === "notBuy" && (
                     <div className="game-message-info" style={{marginBottom: '1.5rem'}}>
-                        <p style={{fontSize: '1.125rem'}}>💭 Ти не витратив гроші! Прогрес до цілі залишився тим самим.</p>
+                        <p style={{fontSize: '1.125rem'}}>💭 Tu n'as pas dépensé d'argent! Le progrès vers l'objectif est resté le même.</p>
                     </div>
                 )}
                 
                 {choose && !advice && choose === "buyMarketplace" && (
                     <div className="game-message-success" style={{marginBottom: '1.5rem'}}>
-                        <p style={{fontSize: '1.125rem'}}>🛍️ Гарний вибір! Ти інвестував у розвиток, але трохи віддалився від мрії.</p>
+                        <p style={{fontSize: '1.125rem'}}>🛍️ Bon choix! Tu as investi dans le développement, mais tu t'es un peu éloigné de ton rêve.</p>
                     </div>
                 )}
                 
                 {choose && !advice && choose === "buyProfessional" && (
                     <div className="game-message-success" style={{marginBottom: '1.5rem'}}>
-                        <p style={{fontSize: '1.125rem'}}>⭐ Професійний набір - це круто, він тобі дуже подобається, бо якісний! Але чи вийде тепер назбирати на мрію?</p>
+                        <p style={{fontSize: '1.125rem'}}>⭐ L'ensemble professionnel - c'est génial, tu l'aimes beaucoup car il est de qualité! Mais pourras-tu maintenant économiser pour ton rêve?</p>
                     </div>
                 )}
                 
                 {advice === "notBuy" && (
                     <div className="game-message-info" style={{marginBottom: '1.5rem'}}>
-                        <p style={{fontSize: '1.125rem'}}>💡Якщо ти будеш зберігати монети, то зможеш швидше досягти своєї мрії.</p>
+                        <p style={{fontSize: '1.125rem'}}>💡Si tu économises les pièces, tu pourras atteindre ton rêve plus rapidement.</p>
                     </div>
                 )}
                 
                 {advice === "buyMarketplace" && (
                     <div className="game-message-success" style={{marginBottom: '1.5rem'}}>
-                        <p style={{fontSize: '1.125rem'}}>💡Іноді доводиться витрачати монети на інші цінні потреби, так часто трапляється.</p>
+                        <p style={{fontSize: '1.125rem'}}>💡Parfois il faut dépenser des pièces pour d'autres besoins précieux, cela arrive souvent.</p>
                     </div>
                 )}
                 
                 {advice === "buyProfessional" && (
                     <div className="game-message-warning" style={{marginBottom: '1.5rem'}}>
-                        <p style={{fontSize: '1.125rem'}}>💡Іноді варто трохи заощаджувати, щоб досягти своєї мрії.</p>
+                        <p style={{fontSize: '1.125rem'}}>💡Parfois il vaut mieux économiser un peu pour atteindre ton rêve.</p>
                     </div>
                 )}
                 
                 {(advice === "notBuy" || advice === "buyMarketplace" || advice === "buyProfessional") && (
                     <div className="game-choices">
                         <NavLink to="/level-two-output" className="game-link">
-                            ▶️ Далі
+                            ▶️ Suivant
                         </NavLink>
                     </div>
                 )}

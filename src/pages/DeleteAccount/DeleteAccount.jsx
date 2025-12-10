@@ -13,7 +13,7 @@ const DeleteAccount = () => {
 
   const handleDelete = async () => {
     if (confirmText !== 'DELETE') {
-      setError('Введіть "DELETE" для підтвердження');
+      setError('Entrez "DELETE" pour confirmer');
       return;
     }
 
@@ -23,7 +23,7 @@ const DeleteAccount = () => {
     try {
       const currentUser = auth.currentUser;
       if (!currentUser) {
-        setError('Ви не авторизовані');
+        setError('Vous n\'êtes pas autorisé');
         return;
       }
 
@@ -39,7 +39,7 @@ const DeleteAccount = () => {
     } catch (error) {
       console.error('Помилка видалення аккаунту:', error);
       if (error.code === 'auth/requires-recent-login') {
-        setError('Для видалення аккаунту потрібно повторно увійти в систему');
+        setError('Pour supprimer le compte, vous devez vous reconnecter');
       } else {
         setError(error.message);
       }
@@ -49,16 +49,16 @@ const DeleteAccount = () => {
 
   return (
     <div style={{padding: '20px', maxWidth: '500px', margin: '0 auto'}}>
-      <h2>Видалити аккаунт</h2>
+      <h2>Supprimer le compte</h2>
       <div style={{backgroundColor: '#fff3cd', padding: '15px', marginBottom: '20px', borderRadius: '5px'}}>
         <p style={{margin: 0, color: '#856404'}}>
-          ⚠️ <strong>Увага!</strong> Ця дія незворотна. Всі ваші дані будуть permanently видалені.
+          ⚠️ <strong>Attention!</strong> Cette action est irréversible. Toutes vos données seront définitivement supprimées.
         </p>
       </div>
       
       <div style={{marginBottom: '20px'}}>
         <label style={{display: 'block', marginBottom: '10px'}}>
-          Введіть <strong>DELETE</strong> для підтвердження:
+          Entrez <strong>DELETE</strong> pour confirmer:
         </label>
         <input 
           type="text"
@@ -79,12 +79,12 @@ const DeleteAccount = () => {
 
       <div style={{display: 'flex', gap: '10px'}}>
         <Button 
-          text={isDeleting ? "Видалення..." : "Видалити аккаунт"} 
+          text={isDeleting ? "Suppression..." : "Supprimer le compte"} 
           onClick={handleDelete}
           disabled={isDeleting}
         />
         <Button 
-          text="Скасувати" 
+          text="Annuler" 
           onClick={() => navigate('/')}
         />
       </div>

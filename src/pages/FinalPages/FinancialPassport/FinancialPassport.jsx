@@ -8,7 +8,7 @@ const { user } = useUser();
 
   return (
     <div>
-      <h2>Твій Фінансовий Паспорт</h2>
+      <h2>Ton Passeport Financier</h2>
       <div>
         <img src="image-financial-passport" alt="Financial Passport" />
         

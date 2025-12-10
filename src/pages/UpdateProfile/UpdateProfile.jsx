@@ -17,14 +17,14 @@ const UpdateProfile = () => {
     e.preventDefault();
     
     if (!username || username.length < 3) {
-      setError('Username має бути мінімум 3 символи');
+      setError("Le nom d'utilisateur doit contenir au moins 3 caractères");
       return;
     }
 
     try {
       const currentUser = auth.currentUser;
       if (!currentUser) {
-        setError('Ви не авторизовані');
+        setError('Vous n\'êtes pas autorisé');
         return;
       }
 
@@ -35,7 +35,7 @@ const UpdateProfile = () => {
       });
 
       setUser({ email: currentUser.email, username });
-      setSuccess('Профіль оновлено!');
+      setSuccess('Profil mis à jour!');
       
       setTimeout(() => {
         navigate('/greeting');
@@ -48,18 +48,18 @@ const UpdateProfile = () => {
 
   return (
     <div>
-      <h2>Оновити профіль</h2>
+      <h2>Mettre à jour le profil</h2>
       <form onSubmit={handleSubmit}>
         <Input 
           type="text" 
-          placeholder="Username" 
-          text="Username" 
+          placeholder="Nom d'utilisateur" 
+          text="Nom d'utilisateur" 
           value={username} 
           onChange={e => setUsername(e.target.value)}
           error={error}
         />
         {success && <p style={{color: 'green'}}>{success}</p>}
-        <Button type="submit" text="Зберегти" />
+        <Button type="submit" text="Enregistrer" />
       </form>
     </div>
   );

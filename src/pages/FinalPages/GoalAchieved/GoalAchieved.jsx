@@ -7,10 +7,10 @@ const GoalAchieved = () => {
   const { user } = useUser();
   return (
     <div>
-      <p>Вітаю! Ти зібрав достатньо монет, щоб здійснити свою мрію!</p>
+      <p>Félicitations! Tu as collecté assez de pièces pour réaliser ton rêve!</p>
       <img src="image-main-goal" alt="Main goal achievement" />
       <ProgressBar value={user.progressbar} />
-      <NavLink to="/financial-passport">Отримати фінансовий паспорт</NavLink>
+      <NavLink to="/financial-passport">Obtenir le passeport financier</NavLink>
     </div>
   )
 }

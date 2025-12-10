@@ -14,33 +14,33 @@ const GoalNotAchieved = () => {
     const getChoiceText = (level, choiceCode) => {
         const choiceTexts = {
             1: {
-                'notWasteMoney': 'Монети не витрачались',
-                'wasteHalfMoney': 'Витрачено половину монет',
-                'wasteAllMoney': 'Витрачено всі монети'
+                'notWasteMoney': "Les pièces n'ont pas été dépensées",
+                'wasteHalfMoney': 'La moitié des pièces dépensées',
+                'wasteAllMoney': 'Toutes les pièces dépensées'
             },
             2: {
-                'notBuy': 'Не купувати',
-                'marketplace': 'Маркетплейс (25 монет)',
-                'professional': 'Професійний набір (60 монет)'
+                'notBuy': 'Ne pas acheter',
+                'marketplace': 'Marketplace (25 pièces)',
+                'professional': 'Ensemble professionnel (60 pièces)'
             },
             3: {
-                'saveAll': 'Відкладено всі монети',
-                'save80': 'Відкладено меншу частину',
-                'save40': 'Відкладено більшу частину'
+                'saveAll': 'Toutes les pièces mises de côté',
+                'save80': 'La plus petite partie mise de côté',
+                'save40': 'La plus grande partie mise de côté'
             },
             4: {
-                'postpone': 'Відкласти на потім',
-                'repair': 'Відремонтувати (-15 монет)',
-                'buyNew': 'Купити новий (-45 монет)'
+                'postpone': 'Reporter à plus tard',
+                'repair': 'Réparer (-15 pièces)',
+                'buyNew': 'Acheter un nouveau (-45 pièces)'
             },
             5: {
-                'bracelets': 'Браслети із гумок',
-                'cookies': 'Печиво для сусідів',
-                'flowers': 'Рослини в горщиках'
+                'bracelets': 'Bracelets en élastiques',
+                'cookies': 'Biscuits pour les voisins',
+                'flowers': 'Plantes en pots'
             }
         };
 
-        return choiceTexts[level]?.[choiceCode] || 'Не вибрано';
+        return choiceTexts[level]?.[choiceCode] || 'Non choisi';
     };
 
     useEffect(() => {
@@ -63,7 +63,7 @@ const GoalNotAchieved = () => {
         // Determine behavior type
         if (impulsivepattern >= 4) {
             // Impulsive behavior: chose option 3 on ≥4 levels
-            setBehaviorType('💸 Імпульсивна поведінка');
+            setBehaviorType('💸 Comportement impulsif');
             setAdviceText(advices.impulsivepattern);
         } else {
             // Check for mixed behavior: two patterns appear 2+ times
@@ -77,16 +77,16 @@ const GoalNotAchieved = () => {
             
             if (patternsWithTwoOrMore.length >= 2) {
                 // Mixed behavior: at least two patterns with 2+ occurrences
-                setBehaviorType('⚖️ Змішана поведінка');
+                setBehaviorType('⚖️ Comportement mixte');
                 setAdviceText(advices.mixedpattern);
             } else if (econompattern > impulsivepattern && econompattern > strategicalpattern) {
-                setBehaviorType('💰 Економна поведінка');
+                setBehaviorType('💰 Comportement économe');
                 setAdviceText([advices.econompattern]);
             } else if (strategicalpattern > impulsivepattern && strategicalpattern > econompattern) {
-                setBehaviorType('📊 Стратегічна поведінка');
+                setBehaviorType('📊 Comportement stratégique');
                 setAdviceText([advices.strategicalpattern]);
             } else {
-                setBehaviorType('⚖️ Змішана поведінка');
+                setBehaviorType('⚖️ Comportement mixte');
                 setAdviceText(advices.mixedpattern);
             }
         }
@@ -112,18 +112,18 @@ const GoalNotAchieved = () => {
     return (
         <div className="game-page">
             <div className="game-card" style={{maxWidth: '800px'}}>
-                <h1 className="game-title">😔 Ти не накопичив(ла) на мрію</h1>
+                <h1 className="game-title">😔 Tu n'as pas économisé pour ton rêve</h1>
                 
                 <div className="game-message-info" style={{marginBottom: '2rem'}}>
                     <p style={{fontSize: '1.125rem', textAlign: 'center'}}>
-                        Чому так сталося? Давай подивимось.
+                        Pourquoi cela s'est-il passé? Regardons ensemble.
                     </p>
                 </div>
 
                 {/* Choices visualization */}
                 {showChoices && (
                     <div style={{marginBottom: '2rem'}}>
-                        <h3 className="game-subtitle">📋 Твої вибори:</h3>
+                        <h3 className="game-subtitle">📋 Tes choix:</h3>
                         <div style={{display: 'flex', flexDirection: 'column', gap: '0.75rem'}}>
                             {choices.map((item, index) => (
                                 <div 
@@ -134,7 +134,7 @@ const GoalNotAchieved = () => {
                                         padding: '0.75rem 1rem'
                                     }}
                                 >
-                                    <strong>Рівень {item.level}:</strong> {getChoiceText(item.level, item.choice)}
+                                    <strong>Niveau {item.level}:</strong> {getChoiceText(item.level, item.choice)}
                                 </div>
                             ))}
                         </div>
@@ -159,7 +159,7 @@ const GoalNotAchieved = () => {
 
                 <div className="game-choices" style={{marginTop: '2rem'}}>
                     <button className="game-button" onClick={() => window.location.href = '/money-city'}>
-                        🔄 Спробувати знову
+                        🔄 Réessayer
                     </button>
                 </div>
             </div>
