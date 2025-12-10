@@ -75,20 +75,20 @@ const HomePage = () => {
       <div className="game-card" style={{ maxWidth: '500px', textAlign: 'center' }}>
         {!user && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}>
-            <Button text="Створити профіль" onClick={() => navigate('/signup')} />
-            <Button text="Увійти" onClick={() => navigate('/signin')} />
+            <Button text="Créer un profil" onClick={() => navigate('/signup')} />
+            <Button text="Se connecter" onClick={() => navigate('/signin')} />
           </div>
         )}
         
         {user && !user.username && (
           <div style={{ padding: '1rem' }}>
             <p style={{ color: '#dc3545', marginBottom: '1rem', fontSize: '1rem' }}>
-              Дані користувача не знайдено в базі даних.
+              Les données utilisateur introuvables dans la base de données.
             </p>
             <p style={{ marginBottom: '1.5rem', color: '#6b7280' }}>
-              Будь ласка, створіть новий профіль.
+              Veuillez créer un nouveau profil.
             </p>
-            <Button text="Створити профіль" onClick={() => navigate('/signup')} />
+            <Button text="Créer un profil" onClick={() => navigate('/signup')} />
           </div>
         )}
         
@@ -102,16 +102,16 @@ const HomePage = () => {
               border: '2px solid #e9d5ff'
             }}>
               <p style={{ fontSize: '1.125rem', color: '#6b21a8', fontWeight: '600', marginBottom: '0.5rem' }}>
-                Вітаємо, {user.username}! 👋
+                Bienvenue, {user.username}! 👋
               </p>
               <p style={{ fontSize: '0.875rem', color: '#9333ea' }}>
-                Готовий до фінансової пригоди?
+                Prêt pour l'aventure financière?
               </p>
             </div>
             
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2rem', alignItems: 'center' }}>
-              <Button text="🎮 Почати нову гру" onClick={handleClick} />
-              <Button text="▶️ Продовжити гру" onClick={resumegame} secondary />
+              <Button text="🎮 Nouvelle partie" onClick={handleClick} />
+              <Button text="▶️ Continuer la partie" onClick={resumegame} secondary />
             </div>
             
             <div style={{ 
@@ -130,7 +130,7 @@ const HomePage = () => {
                   fontWeight: '500'
                 }}
               >
-                ⚙️ Профіль
+                ⚙️ Profil
               </Link>
               <Link
                 to="/delete-account"
@@ -141,7 +141,7 @@ const HomePage = () => {
                   fontWeight: '500'
                 }}
               >
-                🗑️ Видалити
+                🗑️ Supprimer
               </Link>
             </div>
           </div>

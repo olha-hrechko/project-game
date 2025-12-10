@@ -45,56 +45,56 @@ const LevelOneOutput = () => {
     return (
         <div className="game-page">
             <div className="game-card" style={{maxWidth: '600px'}}>
-                <h1 className="game-title">✅ Рівень 1 завершено!</h1>
+                <h1 className="game-title">✅ Niveau 1 terminé!</h1>
                 
                 <div className="game-message-success" style={{marginBottom: '2rem'}}>
-                    <p style={{fontSize: '1.125rem', marginBottom: '1rem'}}>Вітаємо! Ти пройшов перший рівень та навчився основам роботи з грошима!</p>
+                    <p style={{fontSize: '1.125rem', marginBottom: '1rem'}}>Félicitations! Tu as terminé le premier niveau et appris les bases de la gestion de l'argent!</p>
                 </div>
 
                 <div style={{background: 'linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%)', padding: '1.5rem', borderRadius: '1rem', marginBottom: '2rem'}}>
-                    <h3 className="game-subtitle" style={{marginBottom: '1.5rem', textAlign: 'center'}}>📊 Твої результати:</h3>
+                    <h3 className="game-subtitle" style={{marginBottom: '1.5rem', textAlign: 'center'}}>📊 Tes résultats:</h3>
                     
                     <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.5rem'}}>
                         <div style={{background: 'white', padding: '1rem', borderRadius: '0.75rem', textAlign: 'center'}}>
                             <div style={{fontSize: '2rem', marginBottom: '0.5rem'}}>💰</div>
-                            <div style={{fontSize: '0.875rem', color: '#7e22ce', fontWeight: '600'}}>Гаманець</div>
+                            <div style={{fontSize: '0.875rem', color: '#7e22ce', fontWeight: '600'}}>Portefeuille</div>
                             <div style={{fontSize: '1.5rem', fontWeight: 'bold', color: '#9333ea'}}>{user.wallet}</div>
                         </div>
                         
                         <div style={{background: 'white', padding: '1rem', borderRadius: '0.75rem', textAlign: 'center'}}>
                             <div style={{fontSize: '2rem', marginBottom: '0.5rem'}}>😊</div>
-                            <div style={{fontSize: '0.875rem', color: '#7e22ce', fontWeight: '600'}}>Щастя</div>
+                            <div style={{fontSize: '0.875rem', color: '#7e22ce', fontWeight: '600'}}>Bonheur</div>
                             <div style={{fontSize: '1.5rem', fontWeight: 'bold', color: '#9333ea'}}>{user.happiness}</div>
                         </div>
                         
                         <div style={{background: 'white', padding: '1rem', borderRadius: '0.75rem', textAlign: 'center'}}>
                             <div style={{fontSize: '2rem', marginBottom: '0.5rem'}}>🧠</div>
-                            <div style={{fontSize: '0.875rem', color: '#7e22ce', fontWeight: '600'}}>Мудрість</div>
+                            <div style={{fontSize: '0.875rem', color: '#7e22ce', fontWeight: '600'}}>Sagesse</div>
                             <div style={{fontSize: '1.5rem', fontWeight: 'bold', color: '#9333ea'}}>{user.wisdom}</div>
                         </div>
                         
                         <div style={{background: 'white', padding: '1rem', borderRadius: '0.75rem', textAlign: 'center'}}>
                             <div style={{fontSize: '2rem', marginBottom: '0.5rem'}}>⭐</div>
-                            <div style={{fontSize: '0.875rem', color: '#7e22ce', fontWeight: '600'}}>Репутація</div>
+                            <div style={{fontSize: '0.875rem', color: '#7e22ce', fontWeight: '600'}}>Réputation</div>
                             <div style={{fontSize: '1.5rem', fontWeight: 'bold', color: '#9333ea'}}>{user.reputation}</div>
                         </div>
                     </div>
                     
                     <div style={{background: 'white', padding: '1rem', borderRadius: '0.75rem'}}>
                         <div style={{fontSize: '0.875rem', color: '#7e22ce', fontWeight: '600', marginBottom: '0.75rem', textAlign: 'center'}}>
-                            🎯 Прогрес до цілі
+                            🎯 Progrès vers l'objectif
                         </div>
                         <PixelProgressBar value={user.wallet} max={goalprise} pixelCount={10} filledColor="#22c55e" emptyColor="#e9d5ff" />
                         <div style={{textAlign: 'center', marginTop: '0.5rem', fontSize: '0.875rem', color: '#6b21a8'}}>
-                            {user.wallet} / {goalprise} монет
+                            {user.wallet} / {goalprise} pièces
                         </div>
                     </div>
                 </div>
 
                 <div className="game-choices">
-                    <Button onClick={handleClickStart} text="🔄 Почати заново" secondary />
+                    <Button onClick={handleClickStart} text="🔄 Recommencer" secondary />
                     <NavLink to="/level-two" className="game-link">
-                        ▶️ Наступний рівень
+                        ▶️ Niveau suivant
                     </NavLink>
                 </div>
             </div>

@@ -53,17 +53,17 @@ const Header = () => {
       switch (user.goal) {
         case 'emo':
           //localStorage.setItem('goal', 'emo');  
-          setGoalText('Міні-Робот Emo');
+          setGoalText('Mini-Robot Emo');
           setGoalprise(120);
           break;
         case 'velo':
           //localStorage.setItem('goal', 'velo');  
-          setGoalText('Велосипед');
+          setGoalText('Vélo');
           setGoalprise(160);
           break;
         case 'gamecomputer':
           //localStorage.setItem('goal', 'gamecomputer');  
-          setGoalText('Ігровий компʼютер');
+          setGoalText('Ordinateur de jeu');
           setGoalprise(200);
           break;
         default:
@@ -94,8 +94,8 @@ const Header = () => {
           {/* Navigation Section - Top Right */}
           <nav className="game-header-nav">
             {user && <span className="game-header-username">👤 {user.username}</span>}
-            {user && <NavLink to="/" className="game-header-nav-button">🏠 Головна</NavLink>}
-            {user && <button onClick={handleLogout} className="game-header-logout-button">🚪 Вийти</button>}
+            {user && <NavLink to="/" className="game-header-nav-button">🏠 Accueil</NavLink>}
+            {user && <button onClick={handleLogout} className="game-header-logout-button">🚺 Quitter</button>}
           </nav>
         </div>
 
@@ -104,29 +104,29 @@ const Header = () => {
           <div className="game-header-stats-wrapper-horizontal">
             {/* Goal Block - Left */}
             <div className="game-header-goal-block">
-              <div className="game-stat-label">🎯 Твоя ціль</div>
+              <div className="game-stat-label">🎯 Ton objectif</div>
               <div className="game-stat-value-large">{goalText}</div>
             </div>
 
             {/* Three stats vertically - Middle */}
             <div className="game-header-stats-vertical">
               <div className="game-stat-badge-mini">
-                <span className="game-stat-label-mini">🧠 Мудрість:</span>
+                <span className="game-stat-label-mini">🧠 Sagesse:</span>
                 <span className="game-stat-value-mini">{user.wisdom}</span>
               </div>
               <div className="game-stat-badge-mini">
-                <span className="game-stat-label-mini">⭐ Репутація:</span>
+                <span className="game-stat-label-mini">⭐ Réputation:</span>
                 <span className="game-stat-value-mini">{user.reputation}</span>
               </div>
               <div className="game-stat-badge-mini">
-                <span className="game-stat-label-mini">😊 Щастя:</span>
+                <span className="game-stat-label-mini">😊 Bonheur:</span>
                 <span className="game-stat-value-mini">{user.happiness}</span>
               </div>
             </div>
 
             {/* Wallet Block - Right */}
             <div className="game-header-wallet-block">
-              <div className="game-stat-label">💰 Гаманець</div>
+              <div className="game-stat-label">💰 Portefeuille</div>
               <div className="game-stat-value-xlarge">{user.wallet}</div>
             </div>
 
@@ -134,7 +134,7 @@ const Header = () => {
             {urls.includes(location.pathname) && (
               <div className="game-progress-container-full">
                 <div className="game-progress-label">
-                  Прогрес: {user.wallet} / {goalprise}
+                  Progrès: {user.wallet} / {goalprise}
                 </div>
                 <PixelProgressBar
                   value={user.wallet}

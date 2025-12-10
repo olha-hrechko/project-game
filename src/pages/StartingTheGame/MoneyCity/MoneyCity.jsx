@@ -24,22 +24,22 @@ const MoneyCity = () => {
   return (
     <div className="game-page">
       <div className="game-card" style={{maxWidth: '700px'}}>
-        <h1 className="game-title">🏙️ Вітаю у Місті Грошей!</h1>
+        <h1 className="game-title">🏙️ Bienvenue à la Ville de l'Argent!</h1>
         <div className="game-message-info" style={{marginBottom: '2rem'}}>
-          <p style={{fontSize: '1.125rem'}}>Обери ціль, яку хочеш досягти, та почни заробляти гроші!</p>
+          <p style={{fontSize: '1.125rem'}}>Choisis l'objectif que tu veux atteindre et commence à gagner de l'argent!</p>
         </div>
         <div className="game-choices">
-          <Button text="🤖 Міні-Робот Emo - 120 монет" onClick={() => {
+          <Button text="🤖 Mini-Robot Emo - 120 pièces" onClick={() => {
             handleClick('emo')
           }}
           choice
           />
-          <Button text="🚴 Велосипед - 160 монет" onClick={() => {
+          <Button text="🚴 Vélo - 160 pièces" onClick={() => {
             handleClick('velo')
           }}
           choice
           />
-          <Button text="🎮 Ігровий компʼютер - 200 монет" onClick={() => {
+          <Button text="🎮 Ordinateur de jeu - 200 pièces" onClick={() => {
             handleClick('gamecomputer')
           }}
           choice
@@ -48,7 +48,7 @@ const MoneyCity = () => {
         {user && user.goal && (
           <div style={{marginTop: '2rem', borderTop: '2px solid #e9d5ff', paddingTop: '1.5rem'}}>
             <NavLink to="/game-page" className="game-link">
-              ▶️ Почати пригоду
+              ▶️ Commencer l'aventure
             </NavLink>
           </div>
         )}
