@@ -50,6 +50,10 @@ const ScenarioLevelThree = () => {
             toast.info("Tu as déjà fait un choix, attends le conseil");
             return;
         }
+        if (!user) {
+            toast.error("Utilisateur non trouvé");
+            return;
+        }
         setIsDisabled(true);
         const newWallet = user.wallet + giftAmount;
         const newWisdom = user.wisdom + 1;
@@ -75,6 +79,10 @@ const ScenarioLevelThree = () => {
     const handleClickSave80Percent = async(selection) => {
         if (isDisabled) {
             toast.info("Tu as déjà fait un choix, attends le conseil");
+            return;
+        }
+        if (!user) {
+            toast.error("Utilisateur non trouvé");
             return;
         }
         setIsDisabled(true);
@@ -103,6 +111,10 @@ const ScenarioLevelThree = () => {
     const handleClickSave40Percent = async(selection) => {
         if (isDisabled) {
             toast.info("Tu as déjà fait un choix, attends le conseil");
+            return;
+        }
+        if (!user) {
+            toast.error("Utilisateur non trouvé");
             return;
         }
         setIsDisabled(true);

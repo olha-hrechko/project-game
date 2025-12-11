@@ -48,7 +48,7 @@ export const UserProvider = ({ children }) => {
   }, []);
 
   if (loading) {
-    return <div>Завантаження...</div>;
+    return <div>Chargement...</div>;
   }
 
   return (

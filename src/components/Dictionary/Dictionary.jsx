@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Dictionary = ({ words, title = "📚 Словник" }) => {
+const Dictionary = ({ words, title = "📚 Dictionnaire" }) => {
   return (
     <div className="dictionary-card">
       <h3 className="dictionary-title">

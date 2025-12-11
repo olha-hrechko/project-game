@@ -39,6 +39,10 @@ const ScenarioLevelTwo = () => {
             toast.info("Tu as déjà fait un choix, attends le conseil");
             return;
         }
+        if (!user) {
+            toast.error("Utilisateur non trouvé");
+            return;
+        }
         setIsDisabled(true);
         const newWisdom = user.wisdom + 1;
         const newEconompattern = user.result.econompattern + 1;
@@ -61,6 +65,10 @@ const ScenarioLevelTwo = () => {
     const handleClickBuyMarketplace = async(selection) => {
         if (isDisabled) {
             toast.info("Tu as déjà fait un choix, attends le conseil");
+            return;
+        }
+        if (!user) {
+            toast.error("Utilisateur non trouvé");
             return;
         }
         setIsDisabled(true);
@@ -88,6 +96,10 @@ const ScenarioLevelTwo = () => {
     const handleClickBuyProfessional = async(selection) => {
         if (isDisabled) {
             toast.info("Tu as déjà fait un choix, attends le conseil");
+            return;
+        }
+        if (!user) {
+            toast.error("Utilisateur non trouvé");
             return;
         }
         setIsDisabled(true);

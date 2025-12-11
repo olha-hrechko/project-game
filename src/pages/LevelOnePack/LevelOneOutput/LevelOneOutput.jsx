@@ -14,6 +14,10 @@ const LevelOneOutput = () => {
     const goalprise = user?.goal === 'emo' ? 120 : user?.goal === 'velo' ? 160 : user?.goal === 'gamecomputer' ? 200 : 0;
 
     const handleClickStart = async () => {
+        if (!user) {
+            navigate("/");
+            return;
+        }
         const newWallet = 0
         const newWisdom = 0
         const newHappiness = 0

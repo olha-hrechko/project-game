@@ -28,6 +28,11 @@ const LevelFiveOutput = () => {
         progressbar: newProgressBar,
         level: 0,
         goal: '',
+        choiselevelone: '',
+        choiseleveltwo: '',
+        choiselevelthree: '',
+        choiselevelfour: '',
+        choiselevelfive: '',
         result: {econompattern: 0, impilsivepattern: 0, strategicalpattern: 0, mixedpattern: 0}
     });
 
@@ -40,6 +45,11 @@ const LevelFiveOutput = () => {
         progressbar: newProgressBar,
         level: 0,
         goal: '',
+        choiselevelone: '',
+        choiseleveltwo: '',
+        choiselevelthree: '',
+        choiselevelfour: '',
+        choiselevelfive: '',
         result: {econompattern: 0, impilsivepattern: 0, strategicalpattern: 0, mixedpattern: 0}
     })
     navigate("/money-city");

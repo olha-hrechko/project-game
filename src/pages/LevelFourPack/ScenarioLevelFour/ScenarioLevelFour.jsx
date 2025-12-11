@@ -120,7 +120,7 @@ const ScenarioLevelFour = () => {
     return (
         <div className="game-page">
             <div className="game-card" style={{maxWidth: '800px'}}>
-                <h1 className="game-title">💥 Niveau 4: Surprise!</h1>
+                <h1 className="game-title">💥 Niveau 4: Dépenses inattendues</h1>
                 
                 {!choose && !advice && (
                     <div className="game-message-warning" style={{marginBottom: '2rem'}}>

@@ -13,6 +13,10 @@ const LevelThreeOutput = () => {
     const goalprise = user?.goal === 'emo' ? 120 : user?.goal === 'velo' ? 160 : user?.goal === 'gamecomputer' ? 200 : 0;
 
     const handleClickRestart = async () => {
+        if (!user) {
+            navigate("/");
+            return;
+        }
         const newWallet = 0
         const newWisdom = 0
         const newHappiness = 0
@@ -27,6 +31,11 @@ const LevelThreeOutput = () => {
             progressbar: newProgressBar,
             level: 0,
             goal: '',
+            choiselevelone: '',
+            choiseleveltwo: '',
+            choiselevelthree: '',
+            choiselevelfour: '',
+            choiselevelfive: '',
             result: {econompattern: 0, impilsivepattern: 0, strategicalpattern: 0, mixedpattern: 0}
         });
 
@@ -39,6 +48,11 @@ const LevelThreeOutput = () => {
             progressbar: newProgressBar,
             level: 0,
             goal: '',
+            choiselevelone: '',
+            choiseleveltwo: '',
+            choiselevelthree: '',
+            choiselevelfour: '',
+            choiselevelfive: '',
             result: {econompattern: 0, impilsivepattern: 0, strategicalpattern: 0, mixedpattern: 0}
         })
         navigate("/money-city");

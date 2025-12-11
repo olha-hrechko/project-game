@@ -40,6 +40,10 @@ const ScenarioLevelFive = () => {
             toast.info("Tu as déjà fait un choix, attends le conseil");
             return;
         }
+        if (!user) {
+            toast.error("Utilisateur non trouvé");
+            return;
+        }
         setIsDisabled(true);
         const newWallet = user.wallet + 15;
         const newHappiness = user.happiness + 1;
@@ -73,6 +77,10 @@ const ScenarioLevelFive = () => {
             toast.info("Tu as déjà fait un choix, attends le conseil");
             return;
         }
+        if (!user) {
+            toast.error("Utilisateur non trouvé");
+            return;
+        }
         setIsDisabled(true);
         const newWallet = user.wallet + 30;
         const newHappiness = user.happiness + 1;
@@ -101,6 +109,10 @@ const ScenarioLevelFive = () => {
     const handleClickFlowers = async(selection) => {
         if (isDisabled) {
             toast.info("Tu as déjà fait un choix, attends le conseil");
+            return;
+        }
+        if (!user) {
+            toast.error("Utilisateur non trouvé");
             return;
         }
         setIsDisabled(true);

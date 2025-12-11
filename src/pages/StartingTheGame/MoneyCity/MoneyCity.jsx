@@ -12,6 +12,10 @@ const MoneyCity = () => {
   //const { goal, setGoal } = useGoal();
   const { user, setUser } = useUser();
   const handleClick = async (selection) => {
+    if (!user) {
+      navigate("/");
+      return;
+    }
     await updatePlayerData(user.uid, {
       goal: selection
     });

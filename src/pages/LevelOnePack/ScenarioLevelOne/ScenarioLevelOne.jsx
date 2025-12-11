@@ -51,6 +51,10 @@ const ScenarioLevelOne = () => {
     }, [user.level, navigate]);
 
     const handleRetryLevel = async () => {
+        if (!user) {
+            toast.error("Utilisateur non trouvé");
+            return;
+        }
         const newWallet = 0;
         const newWisdom = 0;
         const newHappiness = 0;
@@ -84,6 +88,10 @@ const ScenarioLevelOne = () => {
             toast.info("Tu as déjà fait un choix, attends le conseil");
             return;
         }
+        if (!user) {
+            toast.error("Utilisateur non trouvé");
+            return;
+        }
         setIsDisabled(true);
         const newWallet = user.wallet + 100;
         const newWisdom = user.wisdom + 3;
@@ -110,6 +118,10 @@ const ScenarioLevelOne = () => {
     const handleClickWasteHalfOFMoney = async(selection) => {
         if (isDisabled) {
             toast.info("Tu as déjà fait un choix, attends le conseil");
+            return;
+        }
+        if (!user) {
+            toast.error("Utilisateur non trouvé");
             return;
         }
         setIsDisabled(true);
@@ -140,6 +152,10 @@ const ScenarioLevelOne = () => {
     const handleClickWasteAllMoney = async(selection) => {
         if (isDisabled) {
             toast.info("Tu as déjà fait un choix, attends le conseil");
+            return;
+        }
+        if (!user) {
+            toast.error("Utilisateur non trouvé");
             return;
         }
         setIsDisabled(true);
